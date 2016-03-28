@@ -38,7 +38,7 @@ function initialize(){
  
  function getAllTweets() {
  //grab the results of a query for every tweet in database 
-	d3.json("./test_queryAll.php", function(phpData) {
+	d3.json("http://gis.leg.mn/iMaps/test_queryAll.php", function(phpData) {
 		console.log("phpData length: ",phpData.length);
 		var allTweets = phpData;
 		console.log("total tweets: ",allTweets.length);
@@ -164,7 +164,7 @@ function bindData (searchWord){
 	};
 	$('#loading').show();
 	//grab the query tweets from the php file 
-	d3.json("./test.php?x="+searchWord, function(queryData) {
+	d3.json("http://gis.leg.mn/iMaps/test.php?x="+searchWord, function(queryData) {
 	         
 		console.log("query items: ",queryData.length);
 		var queryTweets = queryData; //why does 'evacuate return empty, but display colors on map???? 
