@@ -1,0 +1,70 @@
+body{
+	width: 100%;
+	height: 100%;
+	margin: 5px;
+	font-family: "helvetica nue", Arial, Helvetica, sans-serif;
+}
+
+#map{	/*trying to RWD, width:yes, height:no*/
+	margin-left: -20px;
+	margin-right: auto;
+	margin-top: -10px;
+	/*width: 1170px;*/ /*for length of nav bar*/
+	width: 100%;
+	height: 100%;	
+}
+
+#temporalSlider {
+	margin: 55px 0 0 6%;
+	
+	width: 240px;
+}
+
+#cc, #cs {
+	margin: 15px 0 0 8.5%;
+	font-weight: bold;
+	padding: 0 3px;
+	color: black;
+	position: relative;
+}
+
+/*legend*/
+#legend {
+	margin-left: 82%;
+	background: #101010 ;
+	width: 230px;
+	height: 115px;
+	padding: 5px;
+	text-align: right;
+	color: darkgray;
+	border-radius: 6px;
+	box-shadow: 3px 3px 3px 2px #a3a3a3;
+	margin-top: 25% /*switch to 40% when done stylizing legend*/
+}
+#legendTitle{
+	text-align:left;
+
+}
+#legendTitle h3{
+	font-size: 1em;
+}
+#legendYear{
+	text-align:left;
+}
+#legendYear h3 {
+	font-size: 1.5em;
+}
+#legendData {
+	margin-top: -130px;
+	font-size: 1.1em;
+	/*font-weight: bold;*/
+}
+#legendData div{
+	/*margin: 5px 0 0 0;*/
+}
+#legendSymbols svg {
+	margin: -20px 0 0 0px;
+}
+.clear {
+	clear: both;
+}

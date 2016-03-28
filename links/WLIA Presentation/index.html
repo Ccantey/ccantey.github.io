@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>2015 WLIA - Chris Cantey</title>
+
+		<meta name="description" content="Migrating your ArcGIS JS app to AMD-style JavaScript">
+		<meta name="author" content="Chris Cantey">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/league.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>ArcGIS <br>JavaScript API</h1>
+					<h3>Migrating to AMD-style JavaScript</h3>
+					<p>
+						<small>2015 WLIA <a href="http://geo-odyssey.com/">Chris Cantey</a> / <a href="http://twitter.com/chriscantey">@chriscantey</a></small>
+					</p>
+					<aside class="notes">
+					   Hello and welcome... I am here to talk about ArcGIS JS API and specifically AMD style javascript. Even though it has been around for awhile, I don't think it is getting wide-spread usage yet. The topic can be a little confusing, but its really not that bad once you mess around with it.</br></br>
+
+					   Personally I was little reluctant to take it on after my first few attempts logged red function undefindes to the console... But then I met an Esri Developer Evangilist at the Code for America Summit and he helped guide me through the transition. So now I want to take what I learned from this experience and pass it along...</br></br>
+					   
+					   The goal of this talk isn't to necessarily teach you how to code in AMD, because my talk will get a little wonky at times, the goal is to make a high pass on the concepts which will hopefully motivate you to make the transition to AMD and to instill confidence in you by showing you that its actually a pretty easy concept to grasp 
+					</aside>
+				</section>
+
+			
+				    <section>
+					<h2>About Me</h2>
+					<!-- <p>
+						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
+					</p> -->
+					<aside class="notes">
+							My name is Chris Cantey and am currently the GIS Programmer Analyst for the City of Wisconsin Rapids. I was hired by the City to build their GIS infrastructure from scratch... When I first came here they had 2 desktop licenses and a smattering of shapefiles. </br></br>
+							
+							In my first year I have nearly filled out the ESRI local government information model with core city infrastructure data in our new SDE, which is built on top of SQL Server. I've Built 3 GIS applications and two web portals... So I feel like we've made alot of progress towards modernizing the city in just one year... And a lot of that credit goes to our Mayor, City Engineer, and City Planner for putting forward the initiative to build a GIS infrastructure. </br></br>
+							
+							I used to work as a GIS developer for a consluting firm in the Twin Cities. It was there that I helped build similar GIS infrasturctures for 13 municipalities... </br></br>
+							
+							I earned my Master's Degree in Cart/GIS from UW-Madison. That experience really made me fall in love with this state, and is the primary reason that my family and I are back in Wisconsin, and where we plan to spend the rest of my lives. ->
+					</aside>
+					</section>
+					<section>
+					<h2>How do I use the ArcGIS JS API?</h2>
+					    <p class="fragment">Single Page Applications</p>
+                        <p class="fragment">Customize (Hack) ArcGIS Online</p>
+						<p class="fragment">Multiple Page Applications</p>
+					<!-- <p>
+						How do I use AMD. single-page application (public app), multi-page application, hacking AGOL
+					</p> -->
+					<aside class="notes">
+							[Read] and click DOWN.->							
+					</aside>
+				     </section>
+
+					 <section data-background="GIS_2.jpg"  data-background-size="100%">
+						<div style="background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 20px;">
+							<h2>Single Page Application</h2>
+							<aside class="notes">
+							   [READ] The single page application is similar to what you see in the examples pages on the JS API. Applications that are less than 3 or 400 lines markup and code.  ->
+							   
+							</aside>
+						</div>
+					</section>
+					<section data-background-video="GIS_4.mp4" >
+					
+					    <aside class="notes">
+						    Here is an example of a single page application that I built. There are only about 100 lines of JavaScript in this app. The basic function of the app is to serve as a quick map portal for citizens to come and view maps that would traditionally be found scattered throughout the city website and in pdf form. ->
+						</aside>
+					</section>
+					<section data-background="GIS_3.jpg"  data-background-size="100%">
+						<div style="background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 20px;">
+							<h2>Customize ArcGIS Online</h2>
+							<aside class="notes">
+							    [READ] Esri has open-sourced all of their ArcGIS Online applications, in fact they have 14 pages in their GitHub repository, so thats about 280 different applications that they have out there for us to tinker with.->
+							</aside>
+						</div>
+					</section>
+					<section data-background-video="GIS_3.mp4" style="top:500px;">
+					     <aside class="notes">
+						     So this is an example that I have been working on. I have been collaborating with David Buehler at the City of Marshfield. They are a fellow Wood County municipality that has partnered with us on a few projects like the WROC aerial imagery acquisition...</br></br> 
+							 
+							 He had a vision to create a citizen service reporting app using the ESRI GeoForm... So much of what we do in local govenment is form work. And once I started playing around with the GeoForm I saw value in creating an inspection form app from the ESRI GeoForm.... </br></br>
+							 
+							 For years our technicians have been inspecting things like sidewalks, pavement and manholes using paper forms similar to this (show form). Once they've recorded the inspection on the form they would take it back to the office and record it a second time in a database, probably an excel table, and perhaps a third time in GIS. Well with this app we can remove all of that redundancy, taking it from 2 or 3 touches to just one and done.->
+						 </aside>
+					</section>
+					 <section data-background="GIS_1.jpg"  data-background-size="100%">
+						<div style="background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 20px;">
+							<h2>Multiple Page Application</h2>
+							<aside class="notes">
+							    The 3rd and most complex type of applications that I build are multiple page applications like our City Viewer app... These are applications that have a few thousand lines of code and are meant to serve as comprehensive municiple GIS application.... </br></br>
+								
+								Applications like these can knock down information silos in agencies by serving GIS data to non-experts in a simple and efficient way... as opposed to ArcGIS Desktop, which for most of us, requires some amount of college education or years of experience to operate.->
+							</aside>
+						</div>
+					</section>
+
+					<section data-background-video="GIS_1.mp4" >
+					    <aside class="notes">
+						    And so this is City Viewer. An appication that allows you to search and identify parcels and utilities.  Perform simple geoprocessing tasks like buffer and measure.  View overlay maps.  Create and print maps... And because it was built using responsive web design techniques, this application is availble to users on nearly all devices and browsers so they can utilize GPS in their phones for location-based-services....</br></br>
+							
+							While I was working as a developer in the Twin Cities I created 13 similar GIS applicaitons using the old jS API. But once I moved to Rapids I gained the freedom and autonomy to take what I had learned there and build out a next-generation application, to rebuild from the ground up using AMD code (and I didn't even have to worry about billable percentages). And so I would like to pass on what I learned from that experience with you here today. 
+						</aside>
+
+					</section>
+				
+		<section>
+			<h2>Some (brief) history...</h2>
+			        <aside class="notes">
+							[READ] ->
+					</aside>
+		</section>
+		
+        <section>
+          <h2>&lt;script&gt; tags</h2>
+          <pre><code contenteditable>
+&lt;script src="js/libs/jquery.js"&gt;&lt;/script&gt;
+&lt;script src="js/libs/underscore.js"&gt;&lt;/script&gt;
+&lt;script src="js/libs/backbone.js"&gt;&lt;/script&gt;
+&lt;script src="js/libs/app.js"&gt;&lt;/script&gt;
+          </code></pre>
+          <p class="fragment">Pollutes the global scope</p>
+          <p class="fragment">Difficult to manage dependencies</p>
+		  <aside class="notes">
+							I'm sure you are used to working with script tags, they havve been around since the beginning of the internet. When you are working with your script tags you can drop in jQuery and Bootstrap. But there are some problems with working with script tags -></br></br>
+							
+							[READ] If you only have a few script tags its probably not a big deal, but if you are dealing with 10 or 20 libraries, you can create global variable conflicts -></br></br>
+							
+							[READ] As you are all aware, the order of your dependencies matters. If you don't load in jQuery before Bootstrap your application will break. ->
+					</aside>
+        </section>
+		<section>
+          <h2>Dojo Toolkit</h2>
+          <p>Serves as the foundation for the ArcGIS JS API</p>
+          <p>Module loading for managing code in large applications</p>
+          <p><a href="http://wiki.commonjs.org/wiki/Modules/1.0">Dojo</a></p>
+		  <aside class="notes">
+							The ArcGIS JavaScript API was built using Dojo... Dojo is a toolkit, much like jQuery, that allows you to abstract away browser idiosynchrosies so that you don't have to learn them all to handle them in your code... Instead you have to learn all the toolkit idiosynchorosies... At any rate Esri chose Dojo and we all just have to deal with it... -> <br><br>
+							
+							
+					</aside>
+        </section>
+
+		 <section>
+          <h3>Legacy API</h3>
+          <pre><code contenteditable>
+// index.html
+dojo.require(esri.tasks.geometry);
+          </code></pre>
+          <pre class="fragment"><code contenteditable>
+// index.html
+geometryservice = new esri.tasks.GeometryService("geometryServiceURL");
+
+          </code></pre>
+		  <pre class="fragment"><code contenteditable>
+// app.js
+console.log(geometryservice.url) //https://gis.wirapids.org...
+          </code></pre>
+		  <aside class="notes">
+			Unique to the Dojo toolkit were these dojo.require statements... which would load a module -> </br></br>
+			
+			We would instantiate the object returned from the module -> </br></br>
+			
+			and it would reside in the global scope... meaning we had access its properties and methods at anytime after the instantiation.... And I could have lived happily ever after with this method ->
+		  </aside>
+        </section>
+
+        <section>
+          <h2>AMD</h2>
+          <p>(Asynchronous Module Definition)</p>
+          <p class="fragment">An offshoot of CommonJS that emphasizes the browser</p>
+          <p class="fragment">Used by script loaders like RequireJS and Dojo.js.</p>
+		  <p class="fragment">ArcGIS JS API Version 3.4</p>
+          <p class="fragment"><a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD Spec</a></p>
+		  <aside class="notes">
+			But then some really smart people came up with something called CommonJS... which is the sortof defacto standard for JavaScript on the server. And it presents an elegant solution to taking your JavaScript - and packaging it up into modules that have contained scope... so scope is local to the module, and you are not creating a bunch of global stuff.... AND it provides a mechanism for modules to depend on, require, and import other modules -> </br></br>
+			
+			AMD is an offshoot of CommonJS that has a little bit of extra magic to facilitate asychronous file loading. Its a nice spec and good idea -> </br></br>
+			
+			[READ] I think that if you work with Node.js you know its pretty great to work with, I haven't personally, but my friend speak highly of it -> </br></br>
+			
+			As of version 3.4 of the ArcGIS API for JavaScript, all Esri modules are written in the AMD style using define() and dojo/_base/declare -></br></br>
+			
+			I've included a link to the AMD spec - which is actually quite easy to read... Its not like a W3c spec that is all cryptic or whatever... Its very simple to read->
+		  </aside>
+        </section>
+
+        <section>
+          <h2>AMD in a Nutshell</h2>
+          <pre><code contenteditable style="text-align: center;">
+define(id?, dependencies?, factory);
+          </code></pre>
+		  <aside class="notes">
+			In a nutshell this is what the API looks like.... You have a define function [HIGHLIGHT], which is how you define your modules. Or a require function - which I will get into later - right now we are focusing on creating our own modules, which use the define funciton... </br></br>
+			
+			You have an optional id... and optional dependencies [HIGHLIGHT]...  and a factory function [HIGHLIGHT] that gets run ... and whatever it returns is the exported value of your module... So I am going to walk through these three parameters and try to explain what each of them does->
+		  </aside>
+        </section>
+
+        <section>
+          <pre><code contenteditable style="text-align: center;">
+define(id?, dependencies?, factory);
+          </code></pre>
+          <p class="fragment">Give our module a unique id (which is really just a path).</p>
+          <pre class="fragment"><code contenteditable>
+define('path/to/Module', function() {
+  
+});
+          </code></pre>
+          <p class="fragment">RequireJS discourages the use of module ids.</p>
+		  <aside class="notes">
+				The ID [HIGHLIGHT id] -> -></br></br>
+				ID will load all modules defined by the path in your configuration (And I'll talk about creating paths later)-></br></br>
+				
+				So in this example, 'Module' is a javascript file.... [WRITE CODE] Change pathtomodule to define('app/navigate', [a,b,c], funciton(a,b,c)... NO corresponding free variable //this loads navigat.js. -> </br></br>
+				
+				Or at least this is what I assume it means -></br></br>
+				
+				RequireJS -which is the same API implemented by Dojo, discourages this method, I'm not exactly sure how you would apply it... At any rate, you will mostly see developers, and you will only see Esri developers use the dependencies parameter. ->
+				See: http://requirejs.org/docs/api.html for difference between id and depndencies
+		   </aside>
+        </section>
+
+        <section>
+          <pre><code contenteditable style="text-align: center;">
+define(id?,  dependencies? , factory);
+          </code></pre>
+          <p class="fragment">
+            List any dependencies in an Array and DoJo will automatically
+            inject them into your module.
+          </p>
+          <pre class="fragment"><code contenteditable>
+// dojo/dom assigned to dom
+// esri/Color assigned to Color
+// esri/map assigned to map
+
+define(['dojo/dom', 'esri/Color','esri/map'], function(dom, Color, map) {
+  
+});
+          </code></pre>
+		  <aside class="notes">
+			[HIGHLIGHT dependencies] -> -></br></br>
+			
+			So here we list any dependencies... in an array... and DoJo will automatically inject them into your module</br></br>
+			
+            if you have visited the Esri API at all, you will recognize this format... It says hey - I depend on the dojo/dom module, I depend on esri/Color module, and I depend on the esri/map module. And DoJo is going to go and find these modules, then its going to pass them into this callback function... then you can go crazy with these modules in here and make stuff happen...	</br></br>
+			
+			Like the ID parameter, the dependencies are simply a path to a JavaScript file... If you are asking how Dojo finds these modules, just hold on to that thought, and I will circle back around to that in a minute.		
+					</aside>
+        </section>
+
+        <section>
+          <h3>What's going on behind the scenes?</h3>
+          <p class="fragment">When DoJo sees this:</p>
+          <pre class="fragment"><code>
+// app.js
+define(['app','jquery', 'd3'], function(app, $, d3) {
+  
+});
+          </code></pre>
+          <p class="fragment">It turns it into this:</p>
+          <pre class="fragment"><code contenteditable>
+&lt;head&gt;
+  &lt;script src="./js/app.js"&gt;&lt;/script&gt;
+  &lt;script src="./js/jquery.js"&gt;&lt;/script&gt;
+  &lt;script src="./js/d3.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+          </code></pre>
+		  <aside class="notes">
+		    [READ] -></br>
+			[READ] -></br>
+			[READ] -></br>
+			[READ] -></br>
+			If you look at firebug you will see that Dojo injected all these dependencies into the head of your document... </br></br>
+			
+			Dojo sees that we require app, jquery, and d3, it goes out and finds those files... and it looks at those files to see if those files have dependencies, and it lookds to see if those files have dependencies and so on. </br></br>
+			
+			And if they do have dependencies it puts all those dependencies into script blocks... it waits for them all to load... then it starts running these module callback functions. -> 
+		  </aside>
+        </section>
+
+        <section>
+          <pre><code contenteditable style="text-align: center;">
+define(id?, dependencies?, factory);
+          </code></pre>
+          <p class="fragment">
+            Called once per module. <i>If</i> the factory function returns anything
+            then that object should be assigned as the exported value for the module.
+          </p>
+
+          <pre class="fragment"><code contenteditable>
+define(['jquery', 'highstock'], function($) {
+  return {
+    // whatever is returned here is
+    // the exported value of the module
+  }
+});
+          </code></pre>
+		  <aside class="notes">
+			[HIGHLIGHT FACTORY] the factory function is required.-></br>
+			[READ] -></br>
+			[WRITE CODE] For example, here I am defining a module... lets say the module is located at //foo.js. The first thing that it does is return an object. and it has a property of name: 'foo'.  Later if someone requires the foo module, they are going to get this object, and if they  log the name to the console they will get foo...</br></br>
+			
+			IF is emphasized because you don't have to return an object. for instance jQuery plugins don't return anything, they just adds functions to the jQuery object.->
+		</aside>
+        </section>
+        <section>
+          <h3>Things you can do with the factory function...</h3>
+		  <aside class="notes">
+			next slide
+		  </aside>
+        </section>
+
+        <section>
+          <h3>Return an Object</h3>
+          <pre><code contenteditable>
+// person.js
+define(function() {
+  return {
+    name: 'Chris',
+    sayHello: function() {
+      alert('Hi, my name is ' + this.name);
+    }
+  }
+});
+          </code></pre>
+          <pre><code contenteditable>
+// app.js
+define(['person'], function(person) {
+  person.sayHello(); // alerts 'Hi, my name is Chris'
+});
+          </code></pre>
+		  <aside class="notes">
+			You can return an object, we just went over that.... So here we return an object - with the name property "chris", and sayHello() is a method of the person object....</br></br>
+			Later on if you require the person object... it will load it in, then run the callback function, and it will alert "Hi my name is chris".
+					</aside>
+        </section>
+
+        <section>
+          <h3>Return a Function</h3>
+          <pre><code contenteditable>
+// sum.js
+define(function() {
+  return function(a, b) {
+    alert(a + b);
+  }
+});
+          </code></pre>
+          <pre><code contenteditable>
+// calculator.js
+define(['sum'], function(sum) {
+  sum(2, 2); // alerts 4
+});
+          </code></pre>
+		  <aside class="notes">
+			You don't have to return an object literal, you can return an function.... </br></br>
+			
+			In this case we have defined a module called sum. Which returns a function that takes two numbers then alerts the sum of two numbers. Then later on, in calculator.js, we can require sum, so the sum function gets loaded... then we call sum and pass in 2 and 2 and it spits out 4. This is pretty useful to define utility functions. for core application logic I tend to use constructors ->
+		</aside>
+        </section>
+        
+        <section>
+          <h3>Return constructors!</h3>
+          <pre><code contenteditable>
+// person.js
+define(function() {
+
+  function Person(name) {
+    this.name = name;
+    this.sayHello = function() {
+      console.log('hello, my name is ' + this.name);
+    }
+  }
+
+  return Person;
+
+});
+          </code></pre>
+          <pre><code contenteditable>
+// app.js
+define(['person'], function(Person) {
+  var chris = new Person('Chris');
+  chris.sayHello(); // 'hello, my name is Chris'
+});
+          </code></pre>
+		  <aside class="notes">
+			A more classy or classical way of returning funcions is with constructors.</br></br>
+
+			If you are used to working in a class-based language like C# or Python, you can simply define a constructor function, and return a reference to that function. (return declare in dojo).. Then elsewhere in your app you can require your module, use the new keyword, then you can tell chris to say hello.
+		  </aside>
+        </section>
+
+        <section>
+          <h3>Create private variables and functions</h3>
+          <pre><code contenteditable style="max-height: 600px;">
+// basket.js
+define(function() {
+  // Private
+  var counter = 0;
+
+  function getCounter() {
+    return counter;
+  }
+
+  function incrementCounter() {
+    counter++;
+  }
+
+  // Public
+  return {
+    count: function() {
+      return getCounter(); // return value of private var
+    },
+    addToCart: function() {
+      incrementCounter(); // call private function
+    }
+  };
+});
+          </code></pre>
+		  <aside class="notes">
+			To piggy back off the last slide, you can create private variables and private functions... So here - basket.js returns an object with some methods and they call functions, but those functions are defined up here but the only stuff that gets returned is down here.... So all this stuff up here is private, this stuff down here has access to them, but they are not exposed to the client. So if you want to make private stuff you can.
+		  </aside>
+        </section>
+
+        <section>
+          <h2>One more thing!</h2>
+          <pre><code contenteditable style="text-align: center;">
+require(dependencies?, callback);
+          </code></pre>
+          <pre><code contenteditable>
+// index.html
+require(['jquery'], function($) {
+  // kickoff your application!
+  $(document).ready(function() { ... });
+});
+          </code></pre>
+		  <aside class="notes">
+		     [READ] So what about Require? Usually the only reason we would use require over define is in the index file, when we want to kick off the app. Whatever the main module is ... do this-></br></br>
+		     alter this text to app/init, app, init();
+		  </aside>
+        </section>
+
+        <section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
+          <h1>Gotchas</h1>
+        </section>
+
+        <section>
+          <h3>Dependency order matters!</h3>
+          <pre class="fragment"><code contenteditable>
+define(['jquery', 'someJqueryPlugin'], function($) {
+
+  /* $ is mapped to the first dependency, which is jquery */
+
+});
+          </code></pre>
+          <p class="fragment">Totally cool.</p>
+          <pre class="fragment"><code contenteditable>
+define(['someJqueryPlugin', 'jquery'], function($) {
+
+  // $ is mapped to the first dependency, which returns undefined
+  // because it's a plugin!!!
+
+});
+          </code></pre>
+          <p class="fragment">No bueno, dude!!!</p>
+		  <aside class="notes">
+			[READ] -> </br>
+			The stuff you list in the array must match the stuff you list in the assignment for the factory function, and they are case sensitive... So in this case we require jQuery, and some jQuery plugin. jQuery exports a value, but the plugin does not return a value, so we leave that parameter empty at the end of the list (we could use 'undefined')... -> </br></br>
+			
+			so what if we reverse it ... No bueno
+			[WRITE CODE] for esri/draw and app/draw to explain case sensitivity 
+		  </aside>
+        </section>
+
+        <section>
+          <h3>Don't mix async and synchronous code</h3>
+          <pre><code contenteditable>
+// index.html
+
+require(['jquery', 'widget', 'highcharts'], function($, widget) {
+
+  /* do something interesting with jquery */
+
+});
+
+&lt;!-- Breaks because Highcharts hasn't loaded yet --&gt;
+&lt;script src="someHighchartsPlugin.js"&gt;&lt;/script&gt;
+
+&lt;!-- Breaks because widget hasn't loaded yet and isn't
+        available in this scope --&gt;
+&lt;script type="text/javascript"&gt;
+  widget.doSomething();
+&lt;/script&gt;
+          </code></pre>
+          <p class="fragment">Use shims or define your own AMD modules instead.</p>
+		  <aside class="notes">
+			Explain: So as your transitioning to AMD and you are trying to piecemeal your code in, situations like this will come up...</br></br>
+			
+			You think to yourself... OK, I'm going to require these modules, then I'm going to do something interesting here, then I'm going to load in some highcharts widget then the whole thing blows up. </br></br>
+			
+			Whats happening here, is that as the browser is traversing the code, it reads this and says "oh you want jQuery?, I'm going to go load these these things, I'll be back in a second, and it makes these asychrnoous requests...</br></br>
+
+			meanwhile the browser just keeps on rolling down the document, parsing this stuff. And it sees this and says I'm going to go and load this right now.... Well the problem is that this plugin is dependent on highcharts, which hasn't loaded yet... </br></br>
+			
+			Or conversely, the brower parses until it sees widget... Well widget doesn't exist in this scope, widget exists in THIS scope. So you are better doing this (move code around)
+		  </aside>
+        </section>
+		
+		
+		<section>
+					<h2>Syntactics and Semantics</h2>
+					<p>
+						A lot has changed!
+					</p>
+					<p class="fragment">Backwards Compatibility</p>
+		<aside class="notes">
+				A lot has changed! In fact, that would probably be a talk all in to itself. But I found that researching the new methods wasn't that hard. So I am just going to list a few basic changes in syntax to give you an overview -> <br><br>
+				And keep in mind that right now we have full backwards compatability. Meaning the legacy API currently loads along with the modern API. And when you visit the ArcGIS JS API you can view the legacy and the modern version of the API.  but keep in mind that dojo has promised to end this backwards compatability.->
+		</aside>
+		</section>
+		
+		
+	    <section>
+          <h3>Basic Patterns changed</h3>
+          <pre><code contenteditable>
+// legacy
+dojo.connect(map, 'onLoad', function ());
+
+// AMD
+require(["esri/map", "dojo/on"], function(Map, on) {
+  map = new Map("map", {
+                extent: initExtent  
+             });
+  on(map, "load", function(){
+  //kickoff
+});
+          </code></pre>
+		  <p >dojo/on</p>
+		    <pre ><code contenteditable >
+require(["dojo/on"], function(on){
+  on(target, "event", function(e){
+    // handle the event
+  });
+});
+</code></pre>
+          <!-- <p class="fragment"><a href="http://requirejs.org/docs/api.html#circular">There is a workaround...</a></p>
+          <p class="fragment">...but you should try to avoid these situations.</p> -->
+		  <aside class="notes">
+			In the legacy API we had dojo.connect: Similar to Element.addEventListener and Element.attachEvent JavaScript functions. It registers a listener to listen to specific events on an Object or element on the page and returns results from a function</br></br>
+			[CODE] connect is synonomous with //$(map).ready(function());<br><br>
+			
+			Dojo/on is A function that provides core event listening functionality. With this function you can provide a target, event type (such as click or mouseover), and listener to be notified of future matching events that are fired.
+		  </aside>
+        </section>	
+		
+        <section>
+          <h3>Managing Asynchronous Threads</h3>
+          <pre><code contenteditable>
+// indentification.js
+define(["esri/tasks/IdentifyTask", 
+        "identifyParameters"], function(IdentifyTask, identifyParameters) {
+
+  identify: function (evt) {
+	identifyTask = new IdentifyTask(config.mapServices.dynamic + "?token=" + token);
+	identifyParameters = new IdentifyParameters();
+	/* take in all parameters */
+	identifyTask.execute(identifyParameters).then(lang.hitch(this, function (idResults) { 
+		this._utility(idResults, evt);                 
+	}));
+   }, /*carry on with other methods*/
+});
+          </code></pre>
+
+          <p class="fragment"><a href="http://requirejs.org/docs/api.html#circular">.then()</a></p>
+          <p class="fragment"><a href="http://dojotoolkit.org/reference-guide/1.10/dojo/_base/lang.html">lang.hitch()</a></p>
+		  <aside class="notes">
+			I found that managing asychronous threads in your code can get a little tricky from time to time. Keeping track of your scope is a big deal in AMD. I found myself relying pretty heavily on .then(), which is a method that that triggers a callback when the thread is complete... Other wise, if I try to run my _utility funciton I will get a big old red undefined warning in my console. -><br><br>
+			
+			lang.hitch is a neat function. It returns a function that will execute a given function in a given scope. This function allows you to control how a function executes in asynchronous operations.
+			
+		  </aside>
+        </section>
+
+        <section>
+          <h1>Configuration</h1>
+        </section>
+
+        <section>
+          <h3>dojoConfig</h3>
+          <p>
+            Tell dojo where to find your modules.
+          </p>
+          <pre class="fragment"><code contenteditable>
+www/
+    js/
+      app/
+        main.js
+        navigate.js
+		identifyParcel.js
+    index.html
+          </code></pre>
+
+          <pre class="fragment"><code contenteditable class="javascript">
+var path_location = location.pathname.replace(/\/[^/]+$/, '');
+var dojoConfig = {
+	paths: {
+		config: path_location,
+		app:  path_location + '/js'
+	}        
+};
+          </code></pre>
+          <pre class="fragment"><code contenteditable>
+require(['app/main', 'app/navigate', 'app/identifyParcel', 'esri/map', 'esri/draw/]);
+          </code></pre>
+		  <aside class="notes">
+			Finally, lets take a step back and address how I was loading all these modules. How does dojo know how to find this stuff? -> </br></br>
+			Say we have a directory structure that looks like this -></br></br>
+			We would first assign a path location to the dojoConfig object BEFORE the Dojo Script tag (which is housed inside the esri js api script)-></br></br>
+			Then when we kick of the app, we can now go load our modules.
+		  </aside>
+        </section>
+
+<section data-background="GIS_2.jpg"  data-background-size="100%">
+	<div style="background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 20px;" class="fragment">
+		<h2>Single Page Application</h2>
+		<h3 class="fragment">See ArcGIS JS API for examples</h3>
+		<aside class="notes">
+		   If you are interested in building single page applications I would check out the examples up on the API. They are all perfect jumping off points for you... Just slide in your REST services, very quick and easy.
+				   
+		</aside>
+			</div>
+</section>
+
+<section data-background="GIS_3.jpg"  data-background-size="100%">
+	<div style="background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 20px;" class="fragment">
+		<h2>Customizing AGOL Apps</h2>
+		<h3 class="fragment">Good for DOM Manipulation</h3>
+		<h3 class="fragment">A bit hard to do anything else</h3>
+		<h3 class="fragment">REST vs WebmapID</h3>
+		<aside class="notes">
+		    [READ]-> Its fairly easy to adjust DOM elements based on form conditions. For example, our inspectin app in the default AGOL template would have many, many fields. But using conditional statements we can reduce it down to a manageble number.-> <br><br>
+		   
+		    The ArcGIS online apps were built by teams of world-class geo-developers and as such the code, is written at a pretty high level of AMD....  and there are tons of files to try to find releveant code. Their code can be a bit hard to follow...I mean anyone elses code CAN be hard to follow. But getting your hands dirty in their code can really help your personal development by seeing how they manage their code. -><br><br>
+			
+			One of the things I struggle with in the AGOL apps is that we aren't pulling directly from a REST service endpoint, rather, we are pulling from an AGOL webmap id. Maybe there are some folks here that have experience stripping the AGOL element but I personally find this type of development good for quick, one-off applications. Anything more complicated and a multiple page application is probably your best bet.->
+				   
+		</aside>
+			</div>
+</section>
+		
+<section data-background="GIS_1.jpg"  data-background-size="100%">
+	<div style="background-color: rgba(0, 0, 0, 0.5); color: #fff; padding: 20px;" class="fragment">
+		<h2>Multiple Page Applications</h2>
+		<h3 class="fragment">Define your own modules!</h3>
+		<h3 class="fragment">Manage your scope!</h3>
+		<h3 class="fragment">Start with API examples and move forward</h3>
+
+		<aside class="notes">
+		   [READ] -> There's a lot that goes into building a big application. Good planning is most important. Creating protoype drawings or wireframes can help you plan out your JavaScript. Then you can plan in chunks, and modules were created for chunking.-> <br><br>
+		   
+		   Managing scope inside the modueles is tricky at first, but once you get the accustomed to Dojo's syntax and semantics, tracking scope actually begins to feel something like muscle memory.-> <br><br>
+		   
+		   [READ] Most of my ArcGIS specific code is directly copy and pasted from API examples. With their core application logic, all you have left to do is build an interaction strategy around it.->
+				   
+		</aside>
+			</div>
+</section>
+
+		<section style="text-align: left;">
+					<h1>THE END</h1>
+					<p>
+					    - <a href="http://gis.wirapids.org">gis.wirapids.org</a> <br>
+						- <a href="http://geo-odyssey.com/">geo-odyssey.com</a> <br>
+						- <a href="https://twitter.com/ChrisCantey">@chriscantey</a>
+					</p>
+					<p>- Special thanks to John Gravois (Esri)</p>
+					<aside class="notes">
+			So that's it! I hope this was somewhat informative and that there weren't too many aggregous erros. I really glazed over this topic at a pretty high level, but if you are a public or a non-profit organization and you are interested transitioning your app, or building a new app with AMD, I would love to talk to you further and help you out in anyway I can. I suspect that at least half of you are absolutely brilliant developers who have your own views or techniques that you could to teach me. So come grab me out in the hall, I would love to hear your thoughts. Thank you.
+			</aside>
+				</section>
+		
+
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

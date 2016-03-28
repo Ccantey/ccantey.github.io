@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+	<!-- BEGIN Meta tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Chris Cantey | Flu Tracker</title>
+	<meta name="description" content="Tracking the Flu on Twitter" />
+	<meta name="author" content="Chris Cantey, https://mywebspace.wisc.edu/ccantey/web/index.html" />
+	<meta name="keywords" content="Twitter, Twitter map, flu, sick, flu tracker, choropleth, social media surveillance">
+	<!-- END Meta tags -->
+
+	<!-- Add jQuery library -->
+	<script type="text/javascript" src="../source/jquery-1.8.2.min.js"></script>
+
+	<!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" src="../lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="../source/jquery.fancybox.js?v=2.1.3"></script>
+	<link rel="stylesheet" type="text/css" href="../source/jquery.fancybox.css?v=2.1.2" media="screen" />
+
+	<!-- Add Button helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="../source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+	<script type="text/javascript" src="../source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+
+	<!-- Add Thumbnail helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="../source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+	<script type="text/javascript" src="../source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+	<!-- Add Media helper (this is optional) -->
+	<script type="text/javascript" src="../source/helpers/jquery.fancybox-media.js?v=1.0.5"></script>
+	
+	<!-- Chart Plugin -->
+	<link rel="stylesheet" type="text/css" href="../source/jquery.jqplot.css"/>	
+	
+	<script type="text/javascript"> 
+		$(document).ready(function(){
+		// Requried: Navigation bar drop-down
+		$("nav ul li").hover(function() {
+			$(this).addClass("active");
+			$(this).find("ul").show().animate({opacity: 1}, 400);
+			},function() {
+			$(this).find("ul").hide().animate({opacity: 0}, 200);
+			$(this).removeClass("active");
+		});		
+		// Requried: Addtional styling elements
+		$('nav ul li ul li:first-child').prepend('<li class="arrow"></li>');
+		$('nav ul li:first-child').addClass('first');
+		$('nav ul li:last-child').addClass('last');
+		$('nav ul li ul').parent().append('<span class="dropdown"></span>').addClass('drop');
+		});
+	</script>
+</head>
+
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div id="background">
+	<div id="header">
+	<a href="https://mywebspace.wisc.edu/ccantey/web/portfolio.html"><img src="images/attache.png"/></a>	
+	</div>
+
+	<nav class="green">
+		 <div class="table">
+			<ul class="clear">
+				<li><a href="../../../index.html">HOME </a></li>
+				<li><a href="../../../index.html#top">PORTFOLIO </a></li>
+				<li><a href="#">RESEARCH </a></li>
+				<li><a href="../../../about.html">RESUME </a></li>
+				<li><a href="../../../contact.html">CONTACT </a></li>
+			 </ul>
+		 </div>
+	</nav>
+	
+	<div id="content">
+		<h1>Tracking the flu on Twitter</h1>
+		<!-- Social Media Plug-ins --Change the URL!!-->
+		<div id="social">		
+			<a href="https://twitter.com/share" class="twitter-share-button" data-via="ChrisCantey">Tweet</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+			</script>		
+			<br>		
+			<div class="fb-like" data-href="https://mywebspace.wisc.edu/ccantey/web/images/SickPage/Sicko/demo/index.html" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial">
+			</div>
+		</div>
+		<h3 id="nomarg">Using Twitter to Monitor Epidemics </h3>
+		<p>
+			<img class="img-float-left" src="images/socialmedia.png" width="200" height="200"/><h4>Updated 1/22/13</h4>I will no longer update this webpage or the map therein.  Over the next 3 months I will migrate all data into a flowing, interactive map/webpage. I submit this static page as a proof of concept.</p><p>The core of my thesis research at the University of Wisconsin-Madison is focused on gathering data from Twitter in order to better understand social phenomena geographically. The micro-blogging service Twitter is a social media platform that allows users to share opinions, links, and images in 140 or fewer characters. There are a variety of privacy settings involved with all social media platforms.  One option that Twitter allows is the ability of users to display their <a href="https://support.twitter.com/articles/78525">Tweet Location </a>. 
+		</p>		
+		<p>
+			Common to most new technologies in the social web is an application programing interface (API) that gives developers access to a portion of their social graph.  Twitter's streaming <a href="https://dev.twitter.com/">API</a> allows developers to pull in about 1% of the full 400 million tweets a day stream.  Approximately 3 to 5% of all Twitter users have opted to share their geolocation, and it is these messages that I am interested in exploring. What kind of spatial knowledge can be gained from this service and how can we apply it to everyday knowledge discovery?  One example application that I am actively developing is a flu tracker.  &nbsp;&nbsp;
+		</p>
+		<p>
+			My methodology and source code follows below. I intend to update the frequency tracker daily and the map once a week.  In the next couple of months I will transition this application into an interactive, streaming website.
+		</p>		
+		<h3>Daily Twitter Illness Frequency Tracker</h3>
+		<center>
+		<!--Interactive Chart-->
+			<div id="chart1" style="height: 300px; width: 600px; position: relative;" class="jqplot-target">
+				<canvas width="600" height="300" style="position: absolute; left: 0px; top: 0px;" class="jqplot-base-canvas"></canvas>
+			</div>
+		</center>
+		<h3>Weekly Flu Tracker Maps:</h3>
+		<p>
+			I have plotted all the tweets (1-2 million per day) received from my crawler using ArcGIS.  I then count the number of "sick" tweets and total tweets per county using the "countpntsinpolys" method from <a href="http://www.spatialecology.com/gme/countpntsinpolys.htm">spatialecology.com</a> and add those fields to the county dataset.
+		</p>
+		<p>
+			To create the <a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//00s500000029000000"> choropleth </a>Illness Index in ArcGIS I normalize the map units by dividing the incidence of "sick" tweets by the total tweets per county.  This will return a right-tail skewed distribution (hopefully; otherwise we have a serious pandemic occuring!) in the range of 0.0005 - 0.5000 (*100 = % sick).  The best method to classify this type of distribution is the geometric interval because the distribution mimics a <a href="http://en.wikipedia.org/wiki/Geometric_series">geometric series</a> and this classification will best optimize that type of data range, ensuring that each class range has approximately the same number of values within each class and that change between intervals is fairly consistent (<a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//003100000072000000.htm">help.arcgis.com</a>).  Finally, I do manually tweak the interval, setting a break point on the mean so that I can create the following divergent (above/below) scheme.
+		</p>
+		<div class="tab_container" id="wrapper">
+			<p> 
+						<a class="fancybox" rel="gallery1" href="images/1-14SickMap2.png" title="Week 1 "><img src="images/1-14SickMap2.png" alt="Flu Tracker Map" /></a>
+						
+						<!--<a class="fancybox" rel="gallery1" href="images/1-14SickMap2.png" title="Week 2 ">-->
+
+						<!--<a class="fancybox" rel="gallery1" href="images/1-14SickMap2.png" title="Week 3"></a>-->
+		
+			</p>
+		</div>		
+		<h3>Developing Geotagged Twitter Applications</h3>		
+		<p>
+			Josh Rosselin developed <a href="https://github.com/tweepy/tweepy">Tweepy</a>, a python wrapper, to streamline the Twitter API, giving developers an open access point to the Twitter stream.  I have modified his original source code to focus on the geo-tagged tweets.  Steven Hemmy, from <a href="http://www.doit.wisc.edu/">UW-Madison DoIT</a> helped me develop MySQL database schema, and in the spirit of open-source collaboration I have made my code available at <a href="https://github.com/Ccantey/GeoSearch-Tweepy">GitHub </a> as well.  
+		</p>		
+		<p>
+			Feel free to contact me at ccantey@wisc.edu for more information 
+		</p>		
+	</div> <!--end content-->
+	<footer>
+		<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US"></a>
+		<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Attache</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Chris Cantey</span>
+		</br>M.S. Candidate | University of Wisconsin | Cartography/GIS
+		</br><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" />
+	</footer>
+</div> <!-- end background -->
+</body>
+
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$(".fancybox")
+	.attr('rel', 'gallery1')
+	.fancybox({
+		openEffect	: 'none',
+		closeEffect	: 'none'
+	});
+	//Plug in values here... also change formats... title.. etc.
+	var line1=[['01-Jan-13', 10180],['02-Jan-13', 10801],['03-Jan-13', 10164],['04-Jan-13', 9293],
+		['05-Jan-13', 10316],['06-Jan-13', 9854], ['07-Jan-13', 11305], ['08-Jan-13', 11013], 
+		['09-Jan-13', 10790], ['10-Jan-13', 9257], 
+		['11-Jan-13', 9770], ['12-Jan-13', 8773], ['13-Jan-13', 8901],
+		['14-Jan-13', 10400], ['15-Jan-13', 10802], ['16-Jan-13', 10827], ['17-Jan-13', 9959],
+		['18-Jan-13', 8898], ['19-Jan-13', 7929], ['20-Jan-13', 8325], ['21-Jan-13', 8334]];
+	var plot1 = $.jqplot('chart1', [line1], {
+		title:'Daily "Sick/Flu" Tweet Count',
+		axes:{
+		xaxis:{
+			renderer:$.jqplot.DateAxisRenderer,
+			tickOptions:{
+				formatString:'%b&nbsp;%#d'
+			} 
+		},
+		yaxis:{
+		  tickOptions:{
+			formatString:'%i'
+			}
+		}
+	  },
+	  highlighter: {
+		show: true,
+		sizeAdjust: 7.5
+	  },
+	  cursor: {
+		show: false
+      }
+	});
+});
+</script>
+	<script type="text/javascript" src="../source/jquery.jqplot.min.js"></script>
+	<script type="text/javascript" src="../source/jqplot.highlighter.min.js"></script>
+	<script type="text/javascript" src="../source/jqplot.cursor.min.js"></script>
+	<script type="text/javascript" src="../source/jqplot.dateAxisRenderer.min.js"></script>
+</html>

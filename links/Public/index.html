@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Controls the dimensions and scaling of the browser this in iOS,
+    Android, webOS, Opera Mini, Opera Mobile and Blackberry. width: controls
+    the width of the viewport initial-scale: controls the zoom level when the
+    page is first loaded maximum-scale: control how users are allowed to zoom
+    the page in or out user-scalable: control how users are allowed to zoom
+    the page in or out -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <!-- Sets the style of the status bar for a web application when in standalone mode -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="description" content="Citizen Services maps for the City of Wisconsin Rapids.">
+    <meta name="author" content="Chris Cantey">
+	<link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+	<!--Facebook Share customization open graph meta tags-->
+	<meta property="og:image" content="http://gis.wirapids.org/PublicApp/#images/TeriBertinWR.png"/>
+	<meta property="og:title" content="Wisconsin Rapids GIS"/>
+	<meta property="og:description" content="Citizen Services maps for the City of Wisconsin Rapids."/>
+	<meta property="og:url" content="http://gis.wirapids.org/PublicApp/#"/>
+    
+
+    <title>GIS | Wisc Rapids</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<!--JavaScript API & Stylesheets-->
+	<script src="http://js.arcgis.com/3.9/"></script>
+    <link href="http://js.arcgis.com/3.9/js/esri/css/esri.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+	<script>	
+	  var initExtent;
+	  var basemap, utilityMap, maxExtent;
+	  var overlayLayer;
+	  var aerialLayer;
+	  var nonLegendLayers;
+	  var legend = null;
+	  var legendLayers = [];
+      var map = null;
+	  var globalMapLayers = [];
+	  var geocoder;
+	  var gpsid;
+	  var graphic;
+		
+		require(["dojo/on", 
+			  "esri/domUtils",
+			  "esri/map",
+			  "esri/request",		
+			  "esri/dijit/Legend",
+			  "esri/layers/ArcGISDynamicMapServiceLayer",	
+			  "esri/dijit/Geocoder"			  ,
+			  "esri/geometry/Extent",
+			  "esri/SpatialReference",
+			  "dojo/domReady!"],
+		function(on, domUtils, Map, esriRequest, Legend, ArcGISDynamicMapServiceLayer, Geocoder, Extent, SpatialReference){	
+		
+		  var mapServiceURL = "https://gis.wirapids.org/arcgis/rest/services/PublicBasemap/MapServer";
+		  
+		  //initExtent = new Extent({xmin:-1.0016607077900654E7,ymin:5514621.059962168,xmax:-9982809.986253398,ymax:5538802.983481816,spatialReference:{wkid:102100}})
+		  map = new Map("map", {
+			center: [-89.83, 44.39],
+			zoom: 14,
+			basemap:'satellite'
+			
+		  }); 
+		var layersRequest = esriRequest({
+			url: mapServiceURL,
+			content: { f: "json" },
+			handleAs: "json",
+			callbackParamName: "callback"
+		  });
+		  layersRequest.then(
+			function(response) {
+			  //console.log("Success: ", response.layers);
+			  globalMapLayers = response.layers;
+		  }, function(error) {
+			  console.log("Error: ", error.message);
+		  });		    
+		 		  
+		  //Add dynamic map 
+		  overlayLayer = new ArcGISDynamicMapServiceLayer(mapServiceURL, {id:"Basemap"});
+		  overlayLayer.setImageFormat("png32");
+		  overlayLayer.setVisibleLayers([4,5,13]);
+		  //overlayLayer.opacity = 0.7;
+		  map.addLayer(overlayLayer);
+          //console.log(overlayLayer);
+		  on(map, "update-end", function(){
+		    domUtils.hide(loading);
+			map.disableDoubleClickZoom();
+		  });
+          on(map, "update-start", function(){
+		    domUtils.show(loading);
+		  });
+		  
+		  //create geocoder
+		  geocoder = new Geocoder({
+		     map:map,
+		     autoComplete: true,
+			 
+			 arcgisGeocoder:{
+		         url:"http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+                name: "Esri World Geocoder",
+                autoComplete: true,
+		        placeholder: "Enter Address...",
+		        //suffix: " ,Wisconsin Rapids",
+		       }
+		  }, "search");
+		  geocoder.startup();
+		  
+          //legendLayers.push({ layer: map, title: " ",hideLayers:[0,1,2,3,27]});
+	      legendLayers.push({ layer: overlayLayer, title: "Legend ",hideLayers:[4,5,13]});
+		  console.log(legendLayers);
+		  legend = new Legend({
+            map:map,
+            layerInfos:legendLayers
+          },"legendDiv");
+		  legend.startup();
+
+  
+		   
+	  });
+	</script>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      
+        <div class="navbar-header">
+		
+          <button id="bars"type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+		  
+		  <!--social media plugins-->
+		  <a id="FB" class="btn-md navbar-toggle" title="Share on Facebook" target="_blank" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fgeo-odyssey.com/links/Public/index.html">				    
+                <i class="fa fa-facebook fa-lg fb"></i></span> 
+		  </a>		  
+	
+		  <a id="TW" class="btn-md navbar-toggle" target="_blank" title="Share on Twitter" href="http://twitter.com/share?url=http%3A%2F%2Fgeo-odyssey.com/links/Public/index.html
+				                                                                           &text=Citizen%20Service%20Maps%20from%20the%20City%20of%20Wisconsin%20Rapids">
+				<i class="fa fa-twitter fa-lg tw"></i>
+		  </a> 		  
+				
+				
+		  <button id="gps"type="button" class="btn-lg navbar-toggle" >		
+		    <span class="glyphicon glyphicon-screenshot"></span> 
+		  </button>
+		  
+          <a id="cityviewer" class="navbar-brand" target="_blank" href="http://www.wirapids.org"><span style="color:#98cc65">Wisconsin Rapids</span> GIS</a>
+		  <a class="navbar-brand" style="color:#fff" href="http://www.wirapids.org" target="_blank" id="cityviewerSMALL"><span style="color:#98cc65">Rapids </span>GIS</a>
+        </div>
+		<!--search-->
+        <div class="navbar-collapse collapse">
+		
+           <ul class="nav navbar-nav navbar-right" id="about">
+            <li><a data-toggle="modal" data-target="#myModal"href="#">about</a></li>
+
+			<li>
+			    <a class="btn btn-md" target="_blank" title="On Facebook" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fgeo-odyssey.com/links/Public/index.html">
+                <i class="fa fa-facebook fa-lg fb"></i></a>
+			</li>
+			<li>
+				<a class="btn btn-md " target="_blank" title="On Twitter" href="http://twitter.com/share?url=http%3A%2F%2Fgeo-odyssey.com/links/Public/index.html
+				                                                                           &text=Citizen%20Service%20Maps%20from%20the%20City%20of%20Wisconsin%20Rapids">
+				<i class="fa fa-twitter fa-lg tw"></i></a>
+			</li>
+          </ul> 
+          <form class="navbar-form navbar-right">
+            <div id ="search"></div>
+          </form>
+
+        </div>
+		
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row row-offcanvas row-offcanvas-left">
+	   <!--sidebar-->
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <ul class="nav">
+            <li class="overlayLayer"><a href="#">Refuse</a></li>
+            <li class="overlayLayer"><a href="#">Developable City Property</a></li>
+            <li class="overlayLayer"><a href="#">Alderman Districts</a></li>
+			<li class="overlayLayer"><a href="#">Parks & Trails</a></li>
+            <li class="overlayLayer"><a href="#">Zoning Districts</a></li>
+            <li class="overlayLayer"><a href="#">Bowhunting Areas</a></li>
+            <li class="overlayLayer"><a href="#">2014 Construction Projects</a></li>
+          </ul>
+
+		  <a href="#" class="btn-clear pull-right" ><i class="glyphicon glyphicon-remove"></i> Clear</a>
+		  <!--add legend here-->
+		  <section class="legend-items" id="legendDiv">
+           </section>
+
+		  <!--footer-->
+		  <img class="foot" src="images/watermark2.png" alt="Rapids Logo">
+        </div>
+        <div id="map">
+          <img id="loading" src="images/loading.gif" style="position:absolute;top:50%;left:50%;z-index:1111;width:32px;height:32px;" >
+        </div>
+      </div>
+    </div>
+
+	<!-- About Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<h4 class="modal-title" id="myModalLabel">Wisconsin Rapids GIS</h4>
+		  </div>
+
+		  <div class="modal-body">
+		  	<strong>About the map</strong><br>
+			Wisconsin Rapids City Viewer was designed and developed in 2014 by Chris Cantey, GIS Specialist for the City of Wisconsin Rapids under the direction of the City's Engineering, Planning, and Mayor's Office with assistance from the Information Systems Department. <br><br>
+
+            <img class="rwdImage" src="images/RWD2.png"/>
+            <p class="modalP">
+			<strong>Browser requirements</strong><br>The map depends upon <a href="https://developers.arcgis.com/javascript/" target="blank">(ArcGIS)</a> JavaScript. The map will run on most versions of Chrome, Firefox, Internet Explorer, and Safari. This application was built using <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>, front-end framework to create a browser-agnostic application, meaning this app is available across nearly all browsers and all browser sizes (including mobile).<br><br>
+            </p>
+			<strong>Directions</strong><br>
+			Select a map layer from the table of contents to the left of map. You may enter an address into the search bar to zoom to that location. Alternatively, if you are using a mobile device, you may select the GPS icon to allow the application to zoom to your current location. While the data is expected to be the most recent and current available, the information on this website is not intended to be served as legal evidence of size, shape, location, or ownership of real estate.		    
+
+		  </div>
+		  <div class="modal-footer">
+
+		  </div>
+		</div>
+	  </div>
+	</div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/app.js"></script>
+  </body>
+</html>

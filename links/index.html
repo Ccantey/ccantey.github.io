@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Chris Cantey | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Web porfolio">
+    <meta name="author" content="Chris Cantey">
+
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <style>
+
+    /* GLOBAL STYLES
+    -------------------------------------------------- */
+    /* Padding below the footer and lighter body text */
+
+    body {
+      padding-bottom: 40px;
+      color: #5a5a5a;
+    }
+
+
+
+    /* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+
+    /* Special class on .container surrounding .navbar, used for positioning it into place. */
+    .navbar-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      margin-top: 20px;
+      margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+    }
+    .navbar-wrapper .navbar {
+
+    }
+
+    /* Remove border and change up box shadow for more contrast */
+    .navbar .navbar-inner {
+      border: 0;
+      -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+         -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+              box-shadow: 0 2px 10px rgba(0,0,0,.25);
+    }
+
+    /* Downsize the brand/project name a bit */
+    .navbar .brand {
+      padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+    }
+
+    /* Navbar links: increase padding for taller navbar */
+    .navbar .nav > li > a {
+      padding: 15px 20px;
+    }
+
+    /* Offset the responsive button for proper vertical alignment */
+    .navbar .btn-navbar {
+      margin-top: 10px;
+    }
+
+
+
+    /* CUSTOMIZE THE CAROUSEL
+    -------------------------------------------------- */
+
+    /* Carousel base class */
+    .carousel {
+      margin-bottom: 60px;
+    }
+
+    .carousel .container {
+      position: relative;
+      z-index: 9;
+    }
+
+    .carousel-control {
+      height: 80px;
+      margin-top: 0;
+      font-size: 120px;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      background-color: transparent;
+      border: 0;
+      z-index: 10;
+    }
+
+    .carousel .item {
+      height: 400px;
+    }
+    .carousel img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      height: 400px;
+    }
+
+    .carousel-caption {
+      background-color: transparent;
+      position: static;
+      max-width: 550px;
+      padding: 0 20px;
+      margin-top: 110px;
+    }
+    .carousel-caption h1,
+    .carousel-caption .lead {
+      margin: 0;
+      line-height: 1.25;
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+    }
+    .carousel-caption .btn {
+      margin-top: 10px;
+    }
+
+
+
+    /* MARKETING CONTENT
+    -------------------------------------------------- */
+
+    /* Center align the text within the three columns below the carousel */
+    .marketing .span4 {
+      text-align: center;
+    }
+    .marketing h2 {
+      font-weight: normal;
+    }
+    .marketing .span4 p {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+
+    /* Featurettes
+    ------------------------- */
+
+    .featurette-divider {
+      margin: 40px 0; /* Space out the Bootstrap <hr> more */
+    }
+    .featurette {
+      /*padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
+      overflow: hidden; /* Vertically center images part 2: clear their floats. */
+    }
+    .featurette-image {
+      margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+    }
+
+    /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+    .featurette-image.pull-left {
+      margin-right: 40px;
+    }
+    .featurette-image.pull-right {
+      margin-left: 40px;
+    }
+
+    /* Thin out the marketing headings */
+    .featurette-heading {
+      font-size: 50px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+
+
+    /* RESPONSIVE CSS
+    -------------------------------------------------- */
+
+    @media (max-width: 979px) {
+
+      .container.navbar-wrapper {
+        margin-bottom: 0;
+        width: auto;
+      }
+      .navbar-inner {
+        border-radius: 0;
+        margin: -20px 0;
+      }
+
+      .carousel .item {
+        height: 500px;
+      }
+      .carousel img {
+        width: auto;
+        height: 500px;
+      }
+
+      .featurette {
+        height: auto;
+        padding: 0;
+      }
+      .featurette-image.pull-left,
+      .featurette-image.pull-right {
+        display: block;
+        float: none;
+        max-width: 40%;
+        margin: 0 auto 20px;
+      }
+    }
+
+
+    @media (max-width: 767px) {
+
+      .navbar-inner {
+        margin: -20px;
+      }
+
+      .carousel {
+        margin-left: -20px;
+        margin-right: -20px;
+      }
+      .carousel .container {
+
+      }
+      .carousel .item {
+        height: 300px;
+      }
+      .carousel img {
+        height: 300px;
+      }
+      .carousel-caption {
+        width: 65%;
+        padding: 0 70px;
+        margin-top: 100px;
+      }
+      .carousel-caption h1 {
+        font-size: 30px;
+      }
+      .carousel-caption .lead,
+      .carousel-caption .btn {
+        font-size: 18px;
+      }
+
+      .marketing .span4 + .span4 {
+        margin-top: 40px;
+      }
+
+      .featurette-heading {
+        font-size: 30px;
+      }
+      .featurette .lead {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+    }
+    </style>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
+
+  </head>
+
+  <body>
+
+
+
+    <!-- NAVBAR
+    ================================================== -->
+    <div class="navbar-wrapper">
+      <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+      <div class="container">
+
+        <div class="navbar navbar-inverse">
+          <div class="navbar-inner">
+            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a data-toggle="modal" class="brand" href="#myModal">Chris Cantey</a>
+            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li class="active"><a href="index.html">Portfolio</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+				  <li class="nav-header">Web/Interactive</li>
+                    <li><a href="#choro">d3 API Choropleth</a></li>
+                    <li><a href="#leaflet">Leaflet API Symbols</a></li>
+                    <li><a href="#election">Election Mapping Analysis</a></li>
+					<li><a href="#flu">Flu Tracker</a></li>
+					<li><a href="#google">Google Maps API</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header">Static Maps</li>
+
+                    <li><a href="#mbc">@New Years #Resolutions</a></li>
+					<li><a href="#mbc">Madison B-Cycle</a></li>
+					<li><a href="#mbc">Electoral College Dot Map</a></li>
+					
+					<li><a href="#hcr">HCR Infographic</a></li>					
+					<li><a href="#hcr">Mapping the Uninsured</a></li>
+					<li><a href="#hcr">MN Subdivision Plat</a></li>
+					
+					<li><a href="#bison">@Bison Nation</a></li>
+					<li><a href="#bison">Bucky's Challenge</a></li>
+					<li><a href="#bison">Avon Landcover Study</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div><!-- /.navbar-inner -->
+        </div><!-- /.navbar -->
+
+      </div> <!-- /.container -->
+    </div><!-- /.navbar-wrapper -->
+	
+	<!--============ MODAL =========================-->
+	  <!-- sample modal content -->
+      <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h3 id="myModalLabel">Welcome to my newly redesigned portfolio!</h3>
+            </div>
+            <div class="modal-body">
+              <h4>*Beta*</h4>
+              <p>This portfolio was constructed using the <a href="http://twitter.github.io/bootstrap/">Bootstrap</a> developer framework. I chose to use Bootstrap largely to reduce development time, which it did.  I was able to create this fully responsive website in about 2 days, replacing my old, outdated website. </p>
+			  <p>I would say that this site is still in <i>Beta</i> mode, as I expect a few glitches here and there.</p>
+			  <p>The views expressed in my maps are not neccesarily my views.  I try to create impartial maps as a rule, and partisan maps when required... Enjoy your stay!</p>
+
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" >
+      <div class="carousel-inner">
+
+        <div class="item active">
+          <img src="assets/img/examples/code.png" alt="Python Code">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Web & GIS Developer</h1>
+              <p class="lead">I have a passion for web development, interactive cartography and data visualization. The design of these tools requires a fundamental knowledge of HTML5, CSS3, JavaScript, Database architecture, Python, and a variety of developer API's.</p>
+
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="assets/img/examples/about.png" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Cartography & GIS</h1>
+              <p class="lead">Great design should be applied to public presentations, it's how we sell our ideas. Cartography is the medium I present, but design principles are global, and apply to every document we create.</p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div><!-- /.carousel -->
+
+
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+	<div class="container">
+
+    <div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+
+      <div class="featurette" id="top">
+        <h2 class="featurette-heading">Interactive Cartography <span class="muted">Developing web applications for the (mobile) web</span></h2>
+		        <p class="lead">The modern cartographer must have an understanding of developer API's like d3js, Leaflet map tile service, ArcGIS for Javascript Server, and Google Maps API. I take pride in my ability to read code and API documentations, build responsive websites, and to produce high quality information in a short amount of time.</p>
+      </div>
+	  <br>
+	  	  <hr class="featurette-divider">
+
+
+      </div><!-- /.row -->    
+
+	  
+	          <!-- Tabs ======= BEGIN PORTFOLIO ======================================== -->
+        <section id="choro">
+          <h2>Choropleth Mapping with d3.js </h2><br>
+		  <center><h4>Caution! <span class="muted"><i>NOT SUPPORTED </i>by Internet Explorer.  Please update to a modern browser like Chrome, Firefox, or Opera. Thank you.</h4></center>
+          <center>
+			<a href="links/choropleth/index.html">
+			<img class="img-rounded" data-src="holder.js/140x140" src="assets/img/examples/d3crop.png"></a>
+		  </center>
+		  <br>
+          <div class="bs-docs-example">
+		  
+            <ul id="myTab" class="nav nav-tabs">
+              <li class="active"><a href="#home" data-toggle="tab">About</a></li>
+              <li><a href="#profile" data-toggle="tab">Methods</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="https://github.com/mbostock/d3/wiki/API-Reference" target="blank">d3 Choropleth</a></li>
+                  <li><a href="http://bl.ocks.org/mbostock/1341021" target="blank">d3 PCP</a></li>
+                </ul>
+              </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade in active" id="home">
+                <p><strong>d3.js </strong>(<i>data driven documents</i>), created by Mike Bostock of the New York Times, from Stanford University, represents an exciting new paradigm in web interactivity. D3 is an open-source JavaScript library for manipulating documents based on <i>data</i> using <i>vector</i> graphics (<i>as opposed to tile maps like google</i>), that helps you bring data to life using HTML, SVG, and CSS: meaning that we can project geographic coordinate systems, and interact with maps and graphs in a web environment. </p>
+              </div>
+              <div class="tab-pane fade" id="profile">
+                <p>You can convert an ESRI shapefile to a TopoJSON or GeoJSON using <a href="http://www.shpescape.com/">www.shpescape.com</a>. Both the GeoJSON and TopoJSON formats structure the geometry and attribute values of a given map feature as a set of properties associated with a JavaScript object. D3 provides the framework to draw, project, and interact with your shapefile. I add the <i>retrieve</i> operator on the counties, and I also apply a coordinated visualization with the parallel coordinate plot (PCP) that allows you to toggle different variables and compare their values to other counties.</p>
+              </div>
+            </div>
+          </div>
+		  </section>
+		  
+		  
+		  <hr class="featurette-divider">
+		  <section id="leaflet">
+		            <h2>Proportional Symbols with Leaflet </h2>
+					<br>
+          <center>
+		  <center><h4>Caution! <span class="muted"><i>NOT SUPPORTED </i>by Internet Explorer.  Please update to a modern browser like Chrome, Firefox, or Opera. Thank you.</h4></center>
+			<a href="links/leaflet/index.html">
+			<img class="img-rounded" data-src="holder.js/140x140" src="assets/img/examples/intcrop.png"></a>
+		  </center>
+		  <br>
+          <div class="bs-docs-example">
+            <ul id="myTab" class="nav nav-tabs">
+              <li class="active"><a href="#home2" data-toggle="tab">About</a></li>
+              <li><a href="#profile2" data-toggle="tab">Methods</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://leafletjs.com/" target="blank">Leaflet </a></li>
+                  <li><a href="http://jquery.com/" target="blank">jQuery </a></li>
+				  <li><a href="http://jqueryui.com/" target="blank">jQuery UI </a></li>
+                </ul>
+              </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade in active" id="home2">
+                <p>Leaflet is a modern open-source JavaScript library for mobile-friendly interactive maps. It is developed by Vladimir Agafonkin with a team of dedicated contributors. Weighing just about 28 KB of JS code, it has all the features most developers ever need for online maps.
+
+				Leaflet is designed with simplicity, performance and usability in mind. It works efficiently across all major desktop and mobile platforms out of the box, taking advantage of HTML5 and CSS3 on modern browsers while still being accessible on older ones. It can be extended with many plugins, has a beautiful, easy to use and well-documented API and a simple, readable source code that is a joy to contribute to.</p>
+              </div>
+              <div class="tab-pane fade" id="profile2">
+                <p>It was my goal to 1. implement the <i>retrieve operator</i>, a popup window that displays point data, 2. implement <i>sequence controls</i> and <i>vcr controls</i>, and 3. dynamically update the legend, using the Leaflet framework. The data was acquired from the Madison Police Department and covers a time period of January, 2012 to October, 2012.  </p>
+              </div>
+            </div>
+          </div>
+		  </section>
+		  <p class="pull-right"><a href="#top">Back to top</a></p>
+		  <hr class="featurette-divider">
+		  <section id="google">
+		  <br>
+		  <h2>Icon Design with Google Maps </h2>
+          <br>
+          <center>
+		    <a href="links/google/index.html">
+			<img class="img-rounded" data-src="holder.js/140x140" src="assets/img/examples/googlecrop.png"></a>
+		  </center>
+		  <br>
+          <div class="bs-docs-example">
+            <ul id="myTab" class="nav nav-tabs">
+              <li class="active"><a href="#home3" data-toggle="tab">About</a></li>
+              <li><a href="#profile3" data-toggle="tab">Methods</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="https://developers.google.com/maps/" target="blank">Google Maps</a></li>
+                </ul>
+              </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade in active" id="home3">
+                <p>The Google Maps API is the most commonly used web map service 
+				for the creation of slipply map mashups, and arguably is the most robust in terms of the range of 
+				supported functionality. The service is proprietary, however, and carries with it 
+				many restrictions of use (including a maximum number of website visits before Google charges for 
+				use of its web mapping service).
+				</p>
+              </div>
+              <div class="tab-pane fade" id="profile3">
+                <p>It was our primary task to create a set of icons for the Google Mashup that could easily be distinguished and interpreted. I created design of the icons usign a 16 X 16 pixel layout in Adobe Photoshop. At this scale we have a better sense of the limitations of the icon design once it is rendered in the HTML. We can then attach the images to the Google Map using the API documentation.</p>
+              </div>
+
+            </div>
+          </div>
+		  </section>
+		  <p class="pull-right"><a href="#top">Back to top</a></p>
+		  <hr class="featurette-divider">
+		  
+		  <section id="election">
+		  <br>
+		  <h2>2012 Election Mapping Technique Analysis </h2>
+          <br>
+          <center>
+		    <a href="links/election/demo/index.html">
+			<img class="img-rounded" data-src="holder.js/140x140" src="assets/img/examples/electioncrop.png"></a>
+		  </center>
+		  <br>
+          <div class="bs-docs-example">
+            <ul id="myTab" class="nav nav-tabs">
+              <li class="active"><a href="#home4" data-toggle="tab">About</a></li>
+              <li><a href="#profile4" data-toggle="tab">Methods</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://jquery.com/" target="blank">jQuery </a></li>
+                </ul>
+              </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade in active" id="home4">
+                <p>Here, I present a model for representing election maps as a guide for cartographers to select a method of representation that best meets this combination of variability and visual weight in the enumeration unit with the goal of progressing the comprehension of alternative election map techniques. This work relies heavily on the work of Dorling, Roth, Gaster and Neuman.</p>
+              </div>
+              <div class="tab-pane fade" id="profile4">
+                <p>I define "Electorate Variability" as a continuum of values from a binary classification "red versus blue" to a perfectly continuous surface of electoral diversity.   Intermediate stages of this continuum are changes in color value, changes in color hue, and value by alpha as well as changes in the thematic representation techniques from a discrete, abrupt representation to a continuous, smooth representation, e.g., proportinal symbol, dot, choropleth, etc..</p>  
+
+				<p>Visual equalization, or adjusting the social variable visual weight to emphasize its importance can also be extended to the spatial resolution of the dataset, in this case using smaller enumeration units.    A finer resolution such as county level data can emphasize urban areas versus rural areas, especially when we add a value-by-alpha layer, rather than generalizing the electorate to the state level, therefore, I include it in this model as equalization.</p>
+              </div>
+ 
+            </div>
+          </div>
+		  </section>
+		  <p class="pull-right"><a href="#top">Back to top</a></p>
+		  <hr class="featurette-divider">
+		  
+		  <section id="flu">
+		  <br>
+		  <h2>Tracking the Flu on Twitter </h2>
+          <br>
+          <center>
+		    <a href="links/flu/demo/index.html">
+			<img class="img-rounded" data-src="holder.js/140x140" src="assets/img/examples/flucrop.png"></a>
+		  </center>
+		  <br>
+          <div class="bs-docs-example">
+            <ul id="myTab" class="nav nav-tabs">
+              <li class="active"><a href="#home5" data-toggle="tab">About</a></li>
+              <li><a href="#profile5" data-toggle="tab">Methods</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://jquery.com/" target="blank">jQuery </a></li>
+				  <li><a href="http://dev.twitter.com" target="blank">Twitter </a></li>
+                </ul>
+              </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade in active" id="home5">
+                <p><p>The core of my thesis research at the University of Wisconsin-Madison is focused on gathering data from Twitter in order to better understand social phenomena geographically. The micro-blogging service Twitter is a social media platform that allows users to share opinions, links, and images in 140 or fewer characters. There are a variety of privacy settings involved with all social media platforms.  One option that Twitter allows is the ability of users to display their <a href="https://support.twitter.com/articles/78525" target="blank">Tweet Location </a>.</p>
+              </div>
+              <div class="tab-pane fade" id="profile5">
+                <p>To create the <a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//00s500000029000000" target="blank"> choropleth </a>Illness Index in ArcGIS I normalize the map units by dividing the incidence of "sick" tweets by the total tweets per county.  This will return a right-tail skewed distribution (hopefully; otherwise we have a serious pandemic occuring!) in the range of 0.0005 - 0.5000 (*100 = % sick).  The best method to classify this type of distribution is the geometric interval because the distribution mimics a <a href="http://en.wikipedia.org/wiki/Geometric_series" target="blank">geometric series</a> and this classification will best optimize that type of data range, ensuring that each class range has approximately the same number of values within each class and that change between intervals is fairly consistent (<a href="http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#//003100000072000000.htm" target="blank">help.arcgis.com</a>).  Finally, I do manually tweak the interval, setting a break point on the mean so that I can create the following divergent (above/below) scheme.</p>
+              </div>
+ 
+            </div>
+          </div>
+		  </section>
+		  <!--==============================================================-->
+	</div>
+		
+
+      <hr class="featurette-divider">
+
+      <div class="featurette">
+
+			<h2 class="featurette-heading">Classic Thematic Mapping <span class="muted">Creating visualizations for print media</span></h2>
+			<p class="lead">The foundation for my design is rooted in traditional cartography. I have made it my specialty to produce all of my static maps and visuals in less than an hour, an exercise in serving the public graphic information in as timely a manner as possible.</p>
+      
+
+      <hr class="featurette-divider">
+	  
+	  <section id="mbc">
+	  <div class="container marketing">
+		
+		  <div class="row">
+				<div class="span4">
+					<a href="assets/img/links/bike.pdf">
+						<img class="img-rounded" src="assets/img/thumbnails/bikecrop.png"></a>
+				</div>
+				<div class="span4">
+					<a href="assets/img/links/TwitterNYresolutions.png">
+						<img class="img-rounded" data-src="holder.js/140x140" src="assets/img/thumbnails/TweetMapCrop.png"></a>
+				</div>
+				<div class="span4">
+					<a href="assets/img/links/Electoral-CollegeLocation.jpg">
+						<img class="img-rounded" data-src="holder.js/140x140" src="assets/img/thumbnails/ElectionCropped1.png"></a>
+				</div>
+		
+			</div>
+	  </section>
+
+	  <hr class="featurette-divider">
+	  
+	  <section id="hcr">
+		  <div class="container marketing">
+
+			<div class="row">
+				<div class="span4">
+					<a href="assets/img/links/infographic.pdf">
+						<img class="img-rounded" src="assets/img/thumbnails/Info.png"></a>
+				</div>
+				<div class="span4">
+					<a href="assets/img/links/Uninsured.pdf">
+						<img class="img-rounded" data-src="holder.js/140x140" src="assets/img/thumbnails/ValueByAlphaCrop.png"></a>
+				</div>
+				<div class="span4">
+					<a href="assets/img/links/CooperEstates.pdf">
+						<img class="img-rounded" data-src="holder.js/140x140" src="assets/img/thumbnails/Cooper_Cropped.png"></a>
+				</div>
+			</div>	
+		
+		  </div>
+	  </section>	
+			
+	  <hr class="featurette-divider">
+	  
+	  <section id="bison">
+	  <div class="container marketing">
+
+		<div class="row">
+		<div class="span4">
+			<a href="assets/img/links/BisoNation.png">
+				<img class="img-rounded" src="assets/img/thumbnails/BisonClip.png"></a>
+		</div>
+		<div class="span4">
+			<a href="assets/img/links/AvonFinal.pdf">
+				<img class="img-rounded" data-src="holder.js/140x140" src="assets/img/thumbnails/Avon_Crop.png"></a>
+		</div>
+		<div class="span4">
+			<a href="assets/img/links/bucky.pdf">
+				<img class="img-rounded" data-src="holder.js/140x140" src="assets/img/thumbnails/Bucky.png"></a>
+		</div>
+		</div>	
+	
+	  </div>
+	 
+	  </section>	
+
+	  <hr class="featurette-divider">
+	  
+	  
+	 
+	  
+	  <!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+
+
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <!-- FOOTER -->
+
+      <footer class="footer">
+			<p>Code licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+			<p class="pull-right"><a href="#">Back to top</a></p>
+			<p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+      </footer>
+	  
+
+    </div><!-- /.container -->
+
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <script>
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
+    </script>
+    <script src="assets/js/holder/holder.js"></script>
+  </body>
+</html>

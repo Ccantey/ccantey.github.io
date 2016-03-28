@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+	
+    <title>Madison CrimeViz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive map of violent crime in Madison, WI">
+    <meta name="author" content="Chris Cantey">
+	
+	<!--Main stylesheet-->
+	<style>
+      body {
+        padding-top: 40px; /* 60px to make the container go all the way to the bottom of the topbar */
+		padding-left: 20px;
+      }
+    </style>
+	<link rel="stylesheet" href="css/style.css"/>
+    <!-- Bootstrap Styleheets -->
+	<link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+	<!--Leaflet stylesheet-->
+	<link rel="stylesheet" href="css/leaflet.css"/>
+	<!--[if lte IE 8]>
+		<link rel="stylesheet" href="css/leaflet.ie.css"/>
+	<![endif]-->
+	
+	<!--jQuery-UI stylesheet-->
+	<link rel="stylesheet" href="lib/jquery-ui/css/custom-theme/jquery-ui-1.10.1.custom.css" />
+	
+	<!-- Add jQuery library -->
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+  </head>
+  
+  <body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a data-toggle="modal" class="brand" href="#myModal">Madison CrimeViz</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="../../../index.html">Home</a></li>
+              <li><a href="../../../index.html#top">Portfolio</a></li>
+              <li><a href="#">Research</a></li>
+			  <li><a href="../../../about.html">Curriculum Vitae</a></li>
+			  <li><a href="../../../contact.html">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+	<!--============ MODAL =========================-->
+	          <!-- sample modal content -->
+          <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h3 id="myModalLabel">About Madison CrimeViz</h3>
+            </div>
+            <div class="modal-body">
+              <h4>The Data</h4>
+              <p>This dataset was acquired from the Madison Police Department. The time frame of this data is from January, 2012 to October, 2012. It contains all incidence of gun-related crime throughout that time period. You can toggle the crimeviz to view these individual point, crime scene locations. This information falls under the public domain, however, it is not my intention to reveal, or bring to attention, any victim identity information. </p>
+			  <p><strong>Please respect the privacy of the victims in these cases.</strong></p>
+
+              <h4>Browser Compatability!</h4>
+              <p>As with most modern web development techniques, Internet Explorer is not a "modern browser" and does not have the ability to render all HTML5 or CSS3 elements... It is highly recommended that you update your browser to Mozilla Firefox, Google Chrome, Opera or any other modern browser in order to interact with this or any other new web tool.</p>
+
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+	
+	
+	<div id="container">
+	<!--div for the map-->
+		<div id="map"></div>
+		
+		<div id="legend" class="leaflet" >
+			<div id="legendTitle" class="clear"></div>
+		    <div id="legendYear" class="clear"></div>
+			<div id="legendSymbols" class="clear"></div>
+			<div id="legendData" class="clear"></div>
+		</div>
+		<div class="clear"></div>
+		
+		<!--VCR Controls-->
+		<div id="vcr-controls">
+			<a class="vcr back-full"><img src="img/back-full.png" alt="back full"/></a>
+			<a class="vcr back"><img src="img/back.png" alt="back"/></a>
+			<a class="vcr play"><img src="img/play.png" alt="play"/></a>
+			<a class="vcr pause"><img src="img/pause.png" alt="pause"/></a>
+			<a class="vcr step"><img src="img/step.png" alt="step"/></a>
+			<a class="vcr step-full"><img src="img/step-full.png" alt="step full"/></a>
+		</div>
+		
+		
+		
+		<!--div for the timestamp slider-->
+		<div id="temporalSlider"></div>
+		<span><button id="cc">Toggle CrimeViz</button></span>
+		
+		
+		
+		<!--libraries-->
+		<script src="js/leaflet-src.js"></script>
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script src="lib/jquery-ui/js/jquery-ui-1.10.1.custom.min.js"></script>
+		
+		<!--link to CSV prototype functions-->
+		<script src="js/EventTarget.js"></script>
+		<script src="js/ProcessCSV.js"></script>
+		
+		<!--link to main.js-->
+		<script src="js/main.js"></script>
+ 
+
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		</div>
+  </body>
+</html>

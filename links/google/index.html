@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>St Cloud Tourism</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript"> 
+$(document).ready(function(){
+
+	// Requried: Navigation bar drop-down
+	$("nav ul li").hover(function() {
+		$(this).addClass("active");
+		$(this).find("ul").show().animate({opacity: 1}, 400);
+		},function() {
+		$(this).find("ul").hide().animate({opacity: 0}, 200);
+		$(this).removeClass("active");
+	});
+	
+	// Requried: Addtional styling elements
+	$('nav ul li ul li:first-child').prepend('<li class="arrow"></li>');
+	$('nav ul li:first-child').addClass('first');
+	$('nav ul li:last-child').addClass('last');
+	$('nav ul li ul').parent().append('<span class="dropdown"></span>').addClass('drop');
+
+});
+</script>
+</head>
+
+
+	
+	<body>
+	<div id="wrapper">
+		 <nav class="green">
+		 <div class="table">
+			<ul class="clear">
+				<li><a href="../../../index.html">HOME </a></li>
+				<li><a href="../../../index.html#top">PORTFOLIO </a></li>
+				<li><a href="#">RESEARCH </a></li>
+				<li><a href="../../../about.html">CURRICULUM VITAE </a></li>
+				<li><a href="../../../contact.html">CONTACT </a></li>
+			 </ul>
+		 </div>
+		 </nav>
+		<table>
+			  <tr>
+					<td id="legendtd">	
+						<h3> <center>Explore St Cloud! </center></h3>					
+						<ul>
+							<li>Public Services </li>
+							<li><img src="img/college.png" alt="Universities" /> College</li>
+							<li><img src="img/HighSchool.png" alt="High Schools" /> High School</li>
+							<li><img src="img/CountySeat.png" alt="Government" /> County Seat</li>
+							<li><img src="img/Hospital2.png" alt="Hospital" /> Hospital</li>
+							<li>Attractions/Amenities </li>
+							<li><img src="img/Dining.png" alt="Dining" /> Dining</li>
+							<li><img src="img/Shopping.png" alt="Shopping" /> Shopping</li>
+							<li><img src="img/Grocery.png" alt="Grocery" /> Grocery</li>
+							<li><img src="img/Museum.png" alt="Museum" /> Museum</li>
+							<li><img src="img/CC.png" alt="Civic Center" /> Civic Center</li>
+							<li>Recreation </li>
+							<li><img src="img/Park.png" alt="Park" /> Park</li>
+							<li><img src="img/ParkPG.png" alt="Playground" /> Playgound</li>
+							<li> </li>
+							
+						</ul>
+					</td>
+					<td id="mappedArea"><div id="map"></div>  <!-- map is placed within this div --></td>
+			  </tr>
+		</table>
+		<footer>
+		<c>&copy; Chris Cantey | MS Cartography/GIS Student<br>
+		University of Wisconsin-Madison</c>
+		</footer>	
+	</div><!-- end wrapper -->	
+	<script type="text/javascript">
+
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 13,
+			center: new google.maps.LatLng(45.56527, -94.17455),
+			mapTypeId: google.maps.MapTypeId.TERRAIN
+		});
+
+		// populate an array with our data
+		var locations = [
+			["Govt", 45.56052, -94.16245, "County Seat", "Stearns Government"],
+			["ParkPG", 45.582779, -94.18111, "Whitney Park", "Large softball and baseball complex, tennis courts, soccer fields"],
+			["ParkPG", 45.57224, -94.16223, "Wilson Park", "Playground, sand volleyball courts, river accesss, hiking trails"],
+			["ParkPG", 45.56848, -94.1793966, "Centenial Park", "Playground, pool, hockey rink, soccer fields"],
+			["ParkPG", 45.54603, -94.14425, "Riverside Park", "Shelters, Splash pad, large playground, disc golf, fishing access, hiking trails"],
+			["Park", 45.54171, -94.13927, "Talahi Park", "Hiking trail that runs through the woods"],
+			["ParkPG", 45.56106, -94.23300, "River's Edge Park", "Hiking trails, large playground, shelters, camp grounds"],
+			["Park", 45.50947, -94.16451, "Plum Creek Park", "Scenic nature trails"],
+			["ParkPG", 45.55445, -94.16451, "Eastman Park", "Adjacent to Lake George, large splash pad and playground"],
+			["Park", 45.57320, -94.18940, "Northway Park", "Tennis, softball and basketball courts"],
+			["Park", 45.53233, -94.17017, "Serenity One and Two Park", "Expansive nature hiking trails"],
+			["ParkPG", 45.55553, -94.16262, "Lake George", "Shelters, Splash pad, large playground, boat rentals, fishing access, hiking trails"],
+			["ParkPG", 45.57067, -94.16708, "Hester Park", "Kiddie pool, river access"],
+			["ParkPG", 45.59656, -94.18176, "Sauk Rapids Municipal Park", "Shelters, campgrounds, river access, large playground"],
+			["ParkPG", 45.53996, -94.15798, "Schmidt Park", "Ice rink, playground, basketball courts"],
+			["ParkPG", 45.53972, -94.17412, "Calvary Hill Park", "Sand playground, tennis and basketball courts, disc golf"],
+			["Park", 45.53569, -94.23308, "Quarry Park", "684 acres, hiking, swimming, diving, rock climbing, fishing"],
+			["HigherEd", 45.55132, -94.15009, "SCSU", "Saint Cloud State University, located along the banks of the Mississippi River hosts 18,000 students."],
+			["HS", 45.56226, -94.20914, "Apollo High", "Serves students living on the north and west side of school district 742"],
+			["HS", 45.55457, -94.16073, "Tech High", "Serves students living on the south and east side of school district 742"],
+			["HigherEd", 45.54730, -94.21154, "Rasmussen College", "College for working adults."],
+			["HigherEd", 45.57806, -94.17918, "SCTC", "2 year technical school."],
+			["Hospital", 45.57560, -94.16940, "St. Cloud Hospital", "500 Beds, ER, out patient services"],
+			["Hospital", 45.57455, -94.21356, "VA Medical Center", "Veterans Affairs Medical Center"],
+			["Hospital", 45.58317, -94.20669, "CentraCare", "Hospital, clinic services"],
+			["Museum", 45.54748, -94.20012, "Stearns History Museum", "Home to Sue the Tyrannasaruas Rex"],
+			["Shopping", 45.55505, -94.20922, "Center Towne Mall", "54 stores, playgound area"],
+			["Shopping", 45.55173, -94.20699, "River's Edge Shopping Center", "There is no river around here, I'm not sure why its called 'River's Edge'"],
+			["Park", 45.55048, -94.14425, "Mussinger Garden", "This place is beautiful, you need to see it to believe it.  Immaculate landscaping, with rotating flower gardens"],
+			["CC", 45.56170, -94.15603, "Civic Center", "This is where everyone in Minnesota goes to for conferences that aren't in Minneapolis."],
+			["Shopping", 45.56033, -94.15923, "Herburgers", "Flagship store for the Herberger's chain of retail outlets"],
+			["Shopping", 45.59248, -94.18725, "Wal-Mart", "Wally world.... Come by some Mountain Dew and a 12 guage shotgun."],
+			["Shopping", 45.58825, -94.19532, "Sam's Club", "Get your Mountain Dew by the pallet."],
+			["Grocery", 45.55105, -94.21540, "Cash Wise", "This was my store.  They have the best produce."],
+			["Grocery", 45.54814, -94.19648, "Cub Foods", "The guy that owns Cash Wise also owns this store and once the fruit goes bad at Cash Wise he dumps it off here for the poor people."],
+			["Grocery", 45.55015, -94.17626, "Coburns", "Classy grocery store, its too expensive for me."],
+			["Grocery", 45.57115, -94.13416, "Coburns", "Classy grocery store, its too expensive for me."],
+			["Dining", 45.55011, -94.20630, "Granite City Food & Brewery", "Fine dining chain $$$"],
+			["Dining", 45.55888, -94.16289, "Mi Famiglia", "Awesome italian food, $$$$"],
+			["Dining", 45.56058, -94.15798, "The Red Carpet", "Get your drunk on here."],
+			["Dining", 45.55565, -94.24315, "Anton's", "This place is really expensive, and overrated."]
+
+
+		];
+
+		var infowindow = new google.maps.InfoWindow();
+
+		var marker, i;
+					
+		for (i = 0; i < locations.length; i++) 
+		{
+			var iconImage, heading;
+			
+			switch(locations[i][0]) {
+				case "HigherEd":	
+					iconImage = "img/college.png";
+					heading = "<h2 class='public'><img src="+iconImage+" />  "+locations[i][3]+"</h2>";
+					break;
+				case "HS":
+					iconImage = "img/HighSchool.png";
+					heading = "<h2 class='public'><img src="+iconImage+" />"+locations[i][3]+"</h2>";
+					break;
+				case "Govt":
+					iconImage = "img/CountySeat.png";
+					heading = "<h2 class='public'><img src="+iconImage+" />  "+locations[i][3]+"</h2>";
+					break;
+				case "Dining":	
+					iconImage = "img/Dining.png";
+					heading = "<h2 class='cultural'><img src="+iconImage+" />  "+locations[i][3]+"</h2>";
+					break;
+				case "Shopping":
+					iconImage = "img/Shopping.png";
+					heading = "<h2 class='cultural'><img src="+iconImage+" />  "+locations[i][3]+"</h2>";
+					break;
+				case "Grocery":
+					iconImage = "img/Grocery.png";
+					heading = "<h2 class='cultural'><img src="+iconImage+" />  "+locations[i][3]+"</h2>";
+					break;
+				case "Museum":	
+					iconImage = "img/Museum.png";
+					heading = "<h2 class='cultural'><img src="+iconImage+" />  "+locations[i][3]+"</h2>";
+					break;
+				case "CC":
+					iconImage = "img/CC.png";
+					heading = "<h2 class='cultural'><img src="+iconImage+" />  "+locations[i][3]+"</h2>";
+					break;
+				case "Park":
+					iconImage = "img/Park.png";
+					heading = "<h2 class='park'><img src="+iconImage+" />  "+locations[i][3]+"</h2>";
+					break;
+				case "ParkPG":
+					iconImage = "img/ParkPG.png";
+					heading = "<h2 class='park'><img src="+iconImage+" />  "+locations[i][3]+"</h2>";
+					break;
+				case "Hospital":
+					iconImage = "img/Hospital2.png";
+					heading = "<h2 class='hospital'><img src="+iconImage+" />  "+locations[i][3]+"</h2>";
+					break;
+			}
+			marker = new google.maps.Marker({
+				icon: iconImage,
+				position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+				map: map
+			});
+			google.maps.event.addListener(marker, 'click', (function(marker, i, heading) {
+				return function() {
+					markerContent =	heading+"</h2><p><b>Description:</b> "+ locations[i][4]+"</p>";
+					infowindow.setContent(markerContent);
+					infowindow.open(map, marker);
+				}
+			})(marker, i, heading));  // end marker click function
+		}; // end for loop		
+	</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+NAME,FIPS,NameCounty,MedianAge,NonWhitePct,Population,PctWin,MarginOvictory,ObamaWin,RomneyWin
+Aitkin,a27001,Aitkin County,-51.7,4.37,16202,2,148,0,1
+Lake of the Woods,a27077,Lake of the Woods County,-48.7,4.23,4045,20,447,0,1
+Big Stone,a27011,Big Stone County,-48.5,1.78,5269,1,40,0,1
+Cass,a27021,Cass County,-46.9,14.12,28567,4,396,0,1
+Murray,a27101,Murray County,-46.8,3.32,8725,7,344,0,1
+Grant,a27051,Grant County,-46.5,2.56,6018,3,105,0,1
+Hubbard,a27057,Hubbard County,-46.4,5.45,20428,17,1946,0,1
+Otter Tail,a27111,Otter Tail County,-46.3,3.88,57303,22,6695,0,1
+Lincoln,a27081,Lincoln County,-46.2,2.02,5896,5,166,0,1
+Faribault,a27043,Faribault County,-46,3.51,14553,9,697,0,1
+Pope,a27121,Pope County,-45.9,2.08,10995,3,161,0,1
+Martin,a27091,Martin County,-45.5,3.35,20840,24,2603,0,1
+Cottonwood,a27033,Cottonwood County,-44.2,7.82,11687,15,883,0,1
+Renville,a27129,Renville County,-44.2,4.55,15730,10,755,0,1
+Jackson,a27063,Jackson County,-44.1,4.25,10266,15,776,0,1
+Marshall,a27089,Marshall County,-44.1,3.39,9439,12,571,0,1
+Wilkin,a27167,Wilkin County,-43.5,2.97,6576,20,626,0,1
+Wadena,a27159,Wadena County,-43.3,3.34,13843,22,573,0,1
+Brown,a27015,Brown County,-43.3,2.5,25893,17,2304,0,1
+Douglas,a27041,Douglas County,-43.1,2.29,36009,16,3240,0,1
+Yellow Medicine,a27173,Yellow Medicine County,-42.9,6.05,10438,16,444,0,1
+Wabasha,a27157,Wabasha County,-42.8,3.12,21676,6,634,0,1
+Redwood,a27127,Redwood County,-42.6,10.92,16059,20,1563,0,1
+Crow Wing,a27035,Crow Wing County,-42.4,3.41,62500,13,3482,0,1
+Pipestone,a27117,Pipestone County,-42.3,6.47,9596,24,1100,0,1
+Becker,a27005,Becker County,-42.2,11.64,32504,15,2375,0,1
+Kanabec,a27065,Kanabec County,-42.1,2.99,16239,9,733,0,1
+Todd,a27153,Todd County,-41.9,4.69,24895,16,1900,0,1
+Clearwater,a27029,Clearwater County,-41.9,12.83,8695,14,550,0,1
+Red Lake,a27125,Red Lake County,-41.9,3.79,4089,6,68,0,1
+Goodhue,a27049,Goodhue County,-41.9,5.41,46183,4,855,0,1
+Pine,a27115,Pine County,-41.6,8.08,29750,0,62,0,1
+Rock,a27133,Rock County,-41.4,3.32,9687,20,744,0,1
+Meeker,a27093,Meeker County,-41.2,2.73,23300,14,1066,0,1
+Watonwan,a27165,Watonwan County,-41.2,13.12,11211,1,26,0,1
+Roseau,a27135,Roseau County,-40.7,5.52,15629,24,1369,0,1
+Morrison,a27097,Morrison County,-40.6,2.33,33198,24,3660,0,1
+Sibley,a27143,Sibley County,-40.3,5.23,15226,29,1472,0,1
+Le Sueur,a27079,Le Sueur County,-39.8,4.55,27703,7,960,0,1
+Polk,a27119,Polk County,-39.8,6.66,31600,6,735,0,1
+Kandiyohi,a27067,Kandiyohi County,-39.5,7.18,42239,7,1376,0,1
+Mille Lacs,a27095,Mille Lacs County,-39.4,8.89,26097,12,48,0,1
+Waseca,a27161,Waseca County,-39.3,6.29,19136,8,746,0,1
+McLeod,a27085,McLeod County,-39.1,4.07,36651,31,1764,0,1
+Chisago,a27025,Chisago County,-39,4.21,53887,13,3703,0,1
+Pennington,a27113,Pennington County,-38.9,6.2,13930,5,270,0,1
+Steele,a27147,Steele County,-38.5,6.94,36576,6,1198,0,1
+Isanti,a27059,Isanti County,-37.6,3.96,37816,21,2406,0,1
+Nobles,a27105,Nobles County,-37.5,24.19,21378,9,788,0,1
+Anoka,a27003,Anoka County,-37.1,13.01,330844,3,4819,0,1
+Dodge,a27039,Dodge County,-36.4,3.95,20087,12,608,0,1
+Carver,a27019,Carver County,-36.3,7.24,91042,20,10410,0,1
+Scott,a27139,Scott County,-34.8,13.64,129928,17,9025,0,1
+Wright,a27171,Wright County,-34.6,4.96,124700,18,4508,0,1
+Benton,a27009,Benton County,-34.1,5.47,38451,27,2712,0,1
+Lyon,a27083,Lyon County,-34.1,9.66,25857,9,1126,0,1
+Sherburne,a27141,Sherburne County,-33.9,5.98,88499,31,2622,0,1
+Stevens,a27149,Stevens County,-33.9,6.33,9726,0,24,0,1
+Stearns,a27145,Stearns County,-33.3,8.22,150642,13,9540,0,1
+Cook,a27031,Cook County,-49.8,11.92,5176,28,719,1,0
+Lac qui Parle,a27073,Lac qui Parle County,-48.9,2.37,7259,1,36,1,0
+Lake,a27075,Lake County,-48.3,2.3,10866,21,1433,1,0
+Kittson,a27069,Kittson County,-48.2,1.49,4552,6,140,1,0
+Traverse,a27155,Traverse County,-47.6,5.79,3558,5,82,1,0
+Koochiching,a27071,Koochiching County,-46.4,5.39,13311,10,610,1,0
+Itasca,a27061,Itasca County,-45.4,6.35,45058,12,1357,1,0
+Norman,a27107,Norman County,-45.2,5.79,6852,9,195,1,0
+Swift,a27151,Swift County,-44.4,3.37,9783,10,503,1,0
+Freeborn,a27047,Freeborn County,-44.2,6.83,31255,14,2357,1,0
+Houston,a27055,Houston County,-43.8,2.4,19027,3,330,1,0
+Chippewa,a27023,Chippewa County,-43.1,6.5,12441,2,116,1,0
+Fillmore,a27045,Fillmore County,-42.8,1.77,20866,8,833,1,0
+St. Louis,a27137,St. Louis County,-40.8,7,200226,26,13817,1,0
+Carlton,a27017,Carlton County,-40.5,10.34,35386,26,4699,1,0
+Mower,a27099,Mower County,-39.2,9.37,39163,23,4190,1,0
+Washington,a27163,Washington County,-38.3,12.23,238136,1,1116,1,0
+Mahnomen,a27087,Mahnomen County,-37.4,49.88,5413,19,405,1,0
+Dakota,a27037,Dakota County,-36.8,14.82,398552,2,3964,1,0
+Olmsted,a27109,Olmsted County,-36.3,14.31,144248,3,2285,1,0
+Hennepin,a27053,Hennepin County,-35.9,25.65,1152425,15,66909,1,0
+Rice,a27131,Rice County,-35,10.71,64142,8,2674,1,0
+Ramsey,a27123,Ramsey County,-34.6,29.9,508640,36,97926,1,0
+Nicollet,a27103,Nicollet County,-34.1,6.3,32727,8,1441,1,0
+Beltrami,a27007,Beltrami County,-33.2,24.94,44442,8,966,1,0
+Winona,a27169,Winona County,-33.1,5.61,51461,13,3500,1,0
+Clay,a27027,Clay County,-31.6,7.31,58999,8,2290,1,0
+Blue Earth,a27013,Blue Earth County,-29.8,7.21,64013,10,3248,1,0

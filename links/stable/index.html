@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>NYC Coordinated Visualization</title>
+
+		<!--main stylesheet-->
+		<link rel="stylesheet" href="css/style.css" />
+		<link href='http://fonts.googleapis.com/css?family=Electrolize' rel='stylesheet' type='text/css'>
+		
+	</head>
+	
+	<body>
+		<div id="wrapper">
+		
+			<div id="mapTitle">
+				<b class="title">#Sandy</b>
+
+			</div> 
+			
+			<!------- container for twitter feed ----------------->
+			<div id="tweetsContainer">
+				<h2>Keyword:</h2><br/>
+				<h3 id="keyword"></h3>
+				<div id="twitterButton">
+					<img src="img/twitter-bird.png" id="bird" alt="Twitter Logo"/>
+					<h2>Twitter feed</h2>
+						<img src = "img/left.png" id = "twitter-left-triangle" alt = "left-pointing triangle"/>
+						<img src = "img/down.png" id = "twitter-down-triangle" alt = "down-pointing triangle"/>
+				</div> <!--closes twitter button div-->
+				<div id="twitterContent">
+					<ul id="tweets">
+		<!--				<li>hello, boyas, got anything good today?</li>
+						<li>well well well, what do we have here, a lost puppy?</li>
+						<li>adios amigos</li>
+						<li>god I want some eats, just a little bit of food sir!</li>
+						-->
+					</ul> 
+				</div><!--closes twitterContent div-->
+			</div><!--closes tweetsContainer div-->
+			<!------- end container for twitter feed ----------------->
+			
+			<div id = "boroughLabels"> 
+				<span id="bronx">Bronx</span>
+				<span id="brooklyn">Brooklyn</span>
+				<span id="manhattan">Manhattan</span>
+				<!--<span id="staten">Staten Is.</span>-->
+				<span id="queens">Queens</span>
+			</div>
+			
+			<div id = "controlPanel"> 
+				<div id ="controlsButton">
+					<img src = "img/right.png" id = "control-right-triangle" alt = "right-pointing triangle"/>
+					<img src = "img/down.png" id = "control-down-triangle" alt = "down-pointing triangle"/>
+					
+					<h2>Map It!</h2>
+				</div><!-- end controls button div-->
+				
+				<div id= "controlsContent">
+					<p>Choose a word...</p>
+					<div id = "wordcloud"> 
+					</div> <!--end wordcloud -->
+				
+					<p>...or search a word</p>
+					<div id="search">
+						<input id="searchBox" type='text' name='x'></input>
+						<div id="submitButton"><p>Submit</p></div>
+					</div>
+
+				</div> <!-- end controls content div -->
+				
+			</div> <!--end control panel div-->
+			
+			<div id="legend">
+				<h2>Frequency of <br/>keyword: </h2>
+				<p id="hi">high</p>
+				<img src="img/legend.png" alt="color legend" id="legendImage"/>
+				<p id="lo">low</p>
+			</div> <!--end legend-->
+			
+			<div id = "boroughsButton"><p>show boroughs</p></div>
+			
+			<div id = "mapContainer"> </div>
+			
+			<div id="aboutContainer">
+				<p>
+					A project by Chris Cantey <a href="http://www.twitter.com/ChrisCantey" target="_blank">@ChrisCantey</a>, Morgan Jarocki <a href="http://www.twitter.com/morganjarocki" target="_blank">@morganjarocki</a> and Caroline Rose <a href="http://www.twitter.com/cmrRose" target="_blank">@cmrRose</a>. 
+				
+					
+					<br/>
+					Thanks to <a href="http://www.johnjcz.com/">John Czaplewski</a> <a href="http://www.twitter.com/JJCzaplewski" target="_blank">@JJCzaplewski</a>, <a href="http://www.andywoodruff.com" target="_blank">Andy Woodruff</a> <a href="http://www.twitter.com/awoodruff" target="_blank">@awoodruff</a>, <br/>&nbsp; Carl Sack <a href = "http://www.twitter.com/northlandiguana" target="_blank">@northlandiguana</a>, Rich Donohue <a href = "http://www.twitter.com/rgdonohue" target="_blank">@rgdonohue</a>, and Rob Roth <a href = "http://www.twitter.com/RobertERoth" target="_blank">@RobertERoth</a>.
+					<br/>
+					<b>Map: &nbsp; </b>Shapefile from Frank Donnelly's <a href="http://gothos.info/tag/new-york-city/" target = "_blank">NYC Geodatabase</a><br/> Hexgrid created using Shitij Mehta's <a href = "http://arcscripts.esri.com/details.asp?dbid=15839" target = "_blank">Create Hexagons</a> toolbox for ArcGIS
+					<br/>
+					Format conversion using Josh Livni's <a href="www.shpescape.com" target="_blank">Shape Escape</a>
+					<br/>
+					<b>Web Design: &nbsp; </b> Map drawn with <a href = "d3js.org" target="_blank">D3 JavaScript Library</a> by <a href="http://bost.ocks.org/mike/" target="_blank">Mike Bostock</a> <a href="http://www.twitter.com/mbostock" target="_blank">@mbostock</a>
+					<br/>
+					Wordcloud javascript by Jason Davies <a href="http://www.twitter.com/jasondavies" target="_blank">@jasondavies</a>
+					<br/>
+						UW-Madison Geography 575, Spring 2013
+				</p>
+			</div>
+			
+		<!--<div id="aboutButton">
+				<img src = "img/right.png" id = "right-triangle" alt = "right-pointing triangle"/>
+				
+				<img src = "img/left.png" id = "left-triangle" alt = "left-pointing triangle"/>
+				<p>About</p>
+			</div> -->
+			
+		<footer> 
+			<p> UW Madison | 2013 </p>
+		</footer>
+		
+		</div> <!--closes wrapper div-->
+		
+		<!--libraries-->
+		<script src="js/async.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<script src="js/queue.min.js" ></script>
+		<script src="js/d3.js"></script>
+		<script src="js/topojson.js"></script>
+		<script src="js/d3.layout.cloud.js"></script>
+		
+		<!--link to main javascript file-->
+		<script src="js/main.js"></script>
+		
+		
+		
+	</body>
+	
+</html> 
