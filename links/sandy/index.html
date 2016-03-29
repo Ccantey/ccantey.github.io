@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>#Sandy</title>
+
+		<!--main stylesheet-->
+		<link rel="stylesheet" href="css/style.css" />
+		<!-- <link rel="stylesheet" href="css/colorbox.css" /> -->
+		<link href='http://fonts.googleapis.com/css?family=Electrolize' rel='stylesheet' type='text/css'>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script>
+			if(navigator.systemLanguage){
+			alert('We are sorry, it appears that you are using Internet Explorer. Please use a Chrome, Firefox, Opera, anything but IE. Thank you!');
+			}
+</script>
+		
+		
+	</head>
+	
+	<body>
+
+		<div id="cover"></div>
+		
+		<div id="welcome-text">
+			<h2>#Sandy</h2>
+			<p> is a map to help visualize <br/>Twitter data
+			in New York City <br/>during Hurricane Sandy. 
+			<br/>
+			<br/>
+			<br/>
+			Start here by either selecting <br/>a word from the word-cloud
+			<br/> - or - <br/> typing a word or phrase into the search box:
+			</p> 
+		</div>
+		
+		<div id="wrapper">
+			
+		
+			<div id="mapTitle">
+				<b class="title">#Sandy</b>
+				<p id="subtitle">explore tweets in NYC during the week of Hurricane Sandy... <br/>--@BigApple</p>
+
+			</div> 
+			
+			<!------- container for twitter feed ----------------->
+			<div id="tweetsContainer">
+				<h2>Keyword:</h2><br/>
+				<h3 id="keyword"></h3>
+				<div id="twitterButton">
+					<img src="img/twitter-bird.png" id="bird" alt="Twitter Logo"/>
+					<h2>Sample Tweets</h2>
+						<img src = "img/left.png" id = "twitter-left-triangle" alt = "left-pointing triangle"/>
+						<img src = "img/down.png" id = "twitter-down-triangle" alt = "down-pointing triangle"/>
+				</div> <!--closes twitter button div-->
+				<div id="twitterContent">
+					<ul id="tweets">
+
+					</ul> 
+				</div><!--closes twitterContent div-->
+			</div><!--closes tweetsContainer div-->
+			<!------- end container for twitter feed ----------------->
+			
+			<div id = "boroughLabels"> 
+				<span id="bronx">Bronx</span>
+				<span id="brooklyn">Brooklyn</span>
+				<span id="manhattan">Manhattan</span>
+				<!--<span id="staten">Staten Is.</span>-->
+				<span id="queens">Queens</span>
+			</div>
+			
+			<div id = "controlPanel"> 
+				<div id ="controlsButton">
+					<img src = "img/right.png" id = "control-right-triangle" alt = "right-pointing triangle"/>
+					<img src = "img/down.png" id = "control-down-triangle" alt = "down-pointing triangle"/>
+					
+					<h2>MAP it!</h2>
+				</div><!-- end controls button div-->
+				
+				<div id= "controlsContent">
+					<p>Choose a word...</p>
+					<div id = "wordcloud"> 
+					</div> <!--end wordcloud -->
+					<div id="newCloudButton"><p>new word-cloud</p></div>
+					<p>...or search a word</p>
+					<div id="search">
+						<input id="searchBox" type='text' name='x'></input>
+						<div id="submitButton"><p>Submit</p></div>
+					</div>
+
+				</div> <!-- end controls content div -->
+				
+			</div> <!--end control panel div-->
+			
+			<div id="legend">
+				
+				<h2>Frequency of keyword: </h2>
+					
+				<div id="legendContainer">
+					<img src="img/legend_side.png" alt="color legend" id="legendImage"/>
+					<span id="hi">high</span>
+					<span id="lo">low</span>
+				</div>
+				
+			</div> <!--end legend-->
+			
+			<div id = "boroughsButton"><p>hide boroughs</p></div>
+			
+			<div id = "mapContainer"> 
+			<img id="loading" src="../../../assets/img/ajax-loader2.gif" style="position: absolute;top:30%;left:48%;z-index:1111;width:42px;height:42px;">
+			</div>
+			<div class="fb-like" style="float:left" data-href="http://geo-odyssey.com/links/sandy/" data-width="450" data-colorscheme="dark" data-show-faces="false" data-send="true"></div>
+			<div id="aboutContainer">
+				<p>
+				
+				<a href="https://twitter.com/intent/tweet?button_hashtag=sandyMap&text=Check%20out%20this%20interactive%20Hurricane%20Sandy%20tweet%20map" class="twitter-hashtag-button" data-url="http://geo-odyssey.com/links/sandy/" data-lang="en" data-related="jasoncosta">Tweet #sandyMap</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></br></br>
+				
+				
+				
+				
+					A project by Chris Cantey <a href="http://www.twitter.com/ChrisCantey" target="_blank">@ChrisCantey</a>, Morgan Jarocki <a href="http://www.twitter.com/morganjarocki" target="_blank">@morganjarocki</a> and Caroline Rose <a href="http://www.twitter.com/cmrRose" target="_blank">@cmrRose</a>. 
+				
+					
+					<br/>
+					Thanks to <a href="http://www.johnjcz.com/">John Czaplewski</a> <a href="http://www.twitter.com/JJCzaplewski" target="_blank">@JJCzaplewski</a>, <a href="http://www.andywoodruff.com" target="_blank">Andy Woodruff</a> <a href="http://www.twitter.com/awoodruff" target="_blank">@awoodruff</a>, <br/>&nbsp; Carl Sack <a href = "http://www.twitter.com/northlandiguana" target="_blank">@northlandiguana</a>, Rich Donohue <a href = "http://www.twitter.com/rgdonohue" target="_blank">@rgdonohue</a>, and Rob Roth <a href = "http://www.twitter.com/RobertERoth" target="_blank">@RobertERoth</a>.
+					<br/>
+					<b>Map: &nbsp; </b>Shapefile from Frank Donnelly's <a href="http://gothos.info/tag/new-york-city/" target = "_blank">NYC Geodatabase</a><br/> Hexgrid created using Shitij Mehta's <a href = "http://arcscripts.esri.com/details.asp?dbid=15839" target = "_blank">Create Hexagons</a> toolbox for ArcGIS
+					<br/>
+					Format conversion using Josh Livni's <a href="www.shpescape.com" target="_blank">Shape Escape</a>
+					<br/>
+					<b>Web Design: &nbsp; </b> Map drawn with <a href = "d3js.org" target="_blank">D3 JavaScript Library</a> by <a href="http://bost.ocks.org/mike/" target="_blank">Mike Bostock</a> <a href="http://www.twitter.com/mbostock" target="_blank">@mbostock</a>
+					<br/>
+					<a href="www.jasondavies.com/wordcloud/" target="_blank">Wordcloud Generator</a> by Jason Davies <a href="http://www.twitter.com/jasondavies" target="_blank">@jasondavies</a>
+					<br/>
+					UW-Madison Geography 575, Spring 2013
+					
+					
+						 
+				</p>
+			</div>
+			
+		<!--<div id="aboutButton">
+				<img src = "img/right.png" id = "right-triangle" alt = "right-pointing triangle"/>
+				
+				<img src = "img/left.png" id = "left-triangle" alt = "left-pointing triangle"/>
+				<p>About</p>
+			</div> -->
+			
+		<footer> 
+			<p> UW Madison | 2013 </p>
+		</footer>
+		
+		</div> <!--closes wrapper div-->
+		
+		<!--libraries-->
+		<script src="js/async.js"></script>
+
+
+
+		<script src="js/queue.min.js" ></script>
+		<script src="js/d3.js"></script>
+		<script src="js/topojson.js"></script>
+		<script src="js/d3.layout.cloud.js"></script>
+		
+		<!--link to main javascript file-->
+		<script src="js/main.js"></script>
+		<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-44787950-1']);
+  _gaq.push(['_setDomainName', 'geo-odyssey.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+		
+		
+	</body>
+	
+</html> 
