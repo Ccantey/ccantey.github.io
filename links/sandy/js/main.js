@@ -170,8 +170,7 @@ function bindData (searchWord){
 		var queryTweets = queryData; //why does 'evacuate return empty, but display colors on map???? 
 		//console.log("queryTweets: ", queryTweets); 
 		
-		//console.log(queryTweets[0].USERID);
-		
+		//console.log(queryTweets[0].USERID);	
 		
 		//output the first four tweets that actually have body text...
 		//first, create a variable to store the ul element. 
@@ -186,6 +185,7 @@ function bindData (searchWord){
 		//loop using a variable (k) to keep track of how many tweets have actually been added to the feed. 
 		for (var k=0; k<4; ){
 			//console.log("k: ",k);
+			console.log(queryTweets[index].BODY);
 			if (!queryTweets[index]){
 				if (index == 0){
 					tweetFeed.innerHTML = "<p>no tweets match <br/>your search</p>";
@@ -193,7 +193,7 @@ function bindData (searchWord){
 				//if undefined, break out of the loop. 
 				break;
 			} else if (queryTweets[index].BODY == null){
-				console.log(queryTweets[index].BODY);
+				
 				//any tweet that starts with a quote sign will have a null body, so it shouldn't be included. 
 				index++; //both cases increment index 
 			} else {
