@@ -166,7 +166,7 @@ function bindData (searchWord){
 	//grab the query tweets from the php file 
 	d3.json("http://gis.leg.mn/iMaps/cantey.php?x="+searchWord, function(queryData) {
 	         
-		// console.log("query items: ",queryData);
+		console.log("query items: ",queryData[0]);
 		var queryTweets = queryData; //why does 'evacuate return empty, but display colors on map???? 
 		//console.log("queryTweets: ", queryTweets); 
 		
