@@ -10,7 +10,6 @@ var controlsButton = document.getElementById("controlsButton");
 var displayControls = true;
 var twitterButton = document.getElementById("twitterButton");
 var displayTweets = true;
-var queryTweets;
 
 //move to front function
 d3.selection.prototype.moveToFront = function() {
@@ -22,8 +21,6 @@ d3.selection.prototype.moveToFront = function() {
 //begin script when window loads
 window.onload = initialize();
 
-
-
 //the first function called once the html is loaded
 function initialize(){
         $('#loading').hide();
@@ -31,10 +28,8 @@ function initialize(){
 	async.series([
 		getAllTweets(),
 		setMap()
-	]);
-	
-	//event listener for submission of word to map (bindData called)- triggers movement of control panel to side and disappearing of welcome text
-	
+	]);	
+	//event listener for submission of word to map (bindData called)- triggers movement of control panel to side and disappearing of welcome text	
  };
  
  function getAllTweets() {
@@ -168,7 +163,7 @@ function bindData (searchWord){
 	d3.json("http://gis.leg.mn/iMaps/cantey.php?x="+searchWord, function(queryData) {
 	    console.log("query items length: ",queryData.length);
 		console.log("query items: ",queryData[0]);
-		queryTweets = queryData; //why does 'evacuate return empty, but display colors on map???? 
+		var queryTweets = queryData; //why does 'evacuate return empty, but display colors on map???? 
 		//console.log("queryTweets: ", queryTweets); 
 		
 		//console.log(queryTweets[0].USERID);	
@@ -210,8 +205,7 @@ function bindData (searchWord){
 				k++; //only increment k in this case. 
 			}; //end if/else statement 
 		    $('#loading').hide();	
-		};//end for loop
-		 	
+		};//end for loop		 	
 		
 		//count the tweets per hex that meet the query: 
 		var queryCountsArray = countQueryTweetsByHex(queryTweets);
@@ -223,16 +217,14 @@ function bindData (searchWord){
 		frequenciesArray = isolateSecondItemOfPair(freqPairsArray);
 
 		//binds the data values and colors the map, called from mouseover of hexagons. 
-		var recolorMap = colorScale(frequenciesArray);
-		
+		var recolorMap = colorScale(frequenciesArray);		
 		
 		//loop through frequency pairs array to assign each frequency value to its json hex 
 		for (var i=0; i<freqPairsArray.length;i++){
 			// for each freq/hex pair in the array... 
 			//store the array pair's hexID and frequency as variables
 			var arrayHex = freqPairsArray[i][0];
-			var arrayFreq = freqPairsArray[i][1];
-			
+			var arrayFreq = freqPairsArray[i][1];			
 			
 			//loop through json Hexes  
 			for (var a=0; a<jsonHexes.length; a++) {
@@ -261,11 +253,8 @@ function bindData (searchWord){
 				} else {
 					return "black"; //black fill if no data
 				};
-			} ); //end style fill
-				
-	}); //end d3.json for query tweets
-	
-	
+			} ); //end style fill				
+	}); //end d3.json for query tweets	
 }
 
 function replaceURLWithHTMLLinks(text) {
@@ -282,8 +271,7 @@ function countQueryTweetsByHex(queryTweets) {
 	//create an empty array to hold the hexagon id of every tweet. 
 	var queryHexagons = [];
 	//create an array to store arrays of [hexID, count] 
-	var hexCountPairsArray = []; 
-	
+	var hexCountPairsArray = []; 	
 	
 	//populate the arrays 
 	for (var i=0; i<queryTweets.length; i++){
@@ -301,20 +289,16 @@ function countQueryTweetsByHex(queryTweets) {
 			
 			//then, build an array of hexID and count of 1 and add it to the pairs array.
 			var hexCountPair = [hexID, 1];
-			hexCountPairsArray.push(hexCountPair);
-			
+			hexCountPairsArray.push(hexCountPair);			
 			
 		} else { 
 			//if it's already in the hexagons array, increment the 'count' element or second element of the hex-count pair. 
 			hexCountPairsArray[existingIndex][1]=  hexCountPairsArray[existingIndex][1] + 1;
 			var count = hexCountPairsArray[existingIndex][1];
-
-		};
-		
-	}; 
+		};		
+	};
 	
-	return hexCountPairsArray;
-	 
+	return hexCountPairsArray;	 
 }
 
 function normalizeTweets(queryCountsArray, hexTweetTotalPairsArray){
@@ -361,8 +345,7 @@ function colorScale(frequenciesArray){
 		.range ([
 		        "#000",
 			//"#302C29", //grey-ish
-			//"#45455C",
-			
+			//"#45455C",			
 			//"#4C61A2", 
 			"#057FFE" //bright blue
 		]); 
@@ -387,8 +370,7 @@ function colorScale(frequenciesArray){
 
 /*------------------- highlighting -------------------*/
 
-function highlight (data, d){
-	
+function highlight (data, d){	
 	if (d.properties.fillcolor){ //if the hexagon has a value, allow highlight
 		
 		var freq = d.properties.frequency;
@@ -402,37 +384,29 @@ function highlight (data, d){
 		//label content: expressed variable, value, id of hexagon
 		var labelAttribute = 	
 		"<br/><h2>"+Math.round(freq*10000)/100+"%</h2><p>of tweets in this area <br/>contain the keyword.</p>";
-	
-			
 		//create info label div
 		var infolabel = d3.select("body").append("div") 
 			.attr("class","infolabel") //class for styling label 
 			.attr("id", d.properties.hexagonID+"label") //id for label div
 			.html(labelAttribute); //add text
-	};
-	
+	};	
 };
 
-function dehighlight (data, d) {
-	
+function dehighlight (data, d) {	
 	//reset hexagon style
 	data.style.stroke = "#444444";
 	
 	//remove the information label
 	labelID = String(d.properties.hexagonID+"label");
 	infoLabel = document.getElementById(labelID);
-	d3.select(infoLabel).remove(); 
-
+	d3.select(infoLabel).remove();
 	d3.selectAll(".boroughs")
 		.moveToFront();
-
 };
 
-function moveLabel() {
-	
+function moveLabel() {	
 	var x = d3.event.clientX+20; //horizontal label coordinate 
-	var y = d3.event.clientY-15; //vertical label coordinate 
-	
+	var y = d3.event.clientY-15; //vertical label coordinate 	
 	d3.select(".infolabel") //select the label div for moving 
 		.style("left", x+"px") //reposition label horizontal 
 		.style("top", y+"px"); //reposition label vertical 
@@ -563,9 +537,7 @@ function cloudMake(){ 		//called at end of setMap !
 		.on("click", function (d){
 			selectWord(d.text);
 			//recolor hexagons
-			
-		})
-		;
+		});
   }
   
 function selectWord(t) {
@@ -595,7 +567,6 @@ $("#submitButton").click(function(){
 	submitWord();
 });
 
-
 $(searchBox).keypress(function(e) {
     if(e.which == 13) {
         submitWord();
@@ -604,12 +575,11 @@ $(searchBox).keypress(function(e) {
 
 function submitWord(){
 	var submittedWord = $('#searchBox').val();
-	
-	
+
 	//clear the wordcloud highlight 
 	d3.selectAll(".words")
 		.style("fill","white");
-		
+
 	//change the displayed keyword in the title
 	document.getElementById("keyword").innerHTML = submittedWord;
   
