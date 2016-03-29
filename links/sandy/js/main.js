@@ -199,10 +199,10 @@ function bindData (searchWord){
 			// 	index++; //both cases increment index 
 
 			} else {
-				console.log(queryTweets[index].BODY);
+				console.log(queryTweets[k].BODY);
 				//if the tweet body exists and isn't null...
 				var li=document.createElement("li");
-				var tweetBody = queryTweets[index].BODY+" --@"+queryTweets[index].META_ProfileAbout;
+				var tweetBody = queryTweets[k].BODY+" --@"+queryTweets[k].META_ProfileAbout;
 				console.log(tweetBody);
 				li.innerHTML = replaceURLWithHTMLLinks(tweetBody);
 				tweetFeed.appendChild(li);
