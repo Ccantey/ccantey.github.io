@@ -10,6 +10,7 @@ var controlsButton = document.getElementById("controlsButton");
 var displayControls = true;
 var twitterButton = document.getElementById("twitterButton");
 var displayTweets = true;
+var queryTweets;
 
 //move to front function
 d3.selection.prototype.moveToFront = function() {
@@ -167,7 +168,7 @@ function bindData (searchWord){
 	d3.json("http://gis.leg.mn/iMaps/cantey.php?x="+searchWord, function(queryData) {
 	    console.log("query items length: ",queryData.length);
 		console.log("query items: ",queryData[0]);
-		var queryTweets = queryData; //why does 'evacuate return empty, but display colors on map???? 
+		queryTweets = queryData; //why does 'evacuate return empty, but display colors on map???? 
 		//console.log("queryTweets: ", queryTweets); 
 		
 		//console.log(queryTweets[0].USERID);	
@@ -192,13 +193,11 @@ function bindData (searchWord){
 				}
 				//if undefined, break out of the loop. 
 				break;
-			} 
-			else if (queryTweets[index].BODY == null){
-				console.log('body == null');
+			} if (queryTweets[index].BODY == null){
+				// console.log('body == null');
 				//any tweet that starts with a quote sign will have a null body, so it shouldn't be included. 
 				index++; //both cases increment index 
-				console.log(queryTweets[index].BODY);
-
+				// console.log(queryTweets[index].BODY);
 			} else {
 				console.log(queryTweets[index].BODY);
 				//if the tweet body exists and isn't null...
