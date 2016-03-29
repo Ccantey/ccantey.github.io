@@ -192,17 +192,18 @@ function bindData (searchWord){
 				}
 				//if undefined, break out of the loop. 
 				break;
-			// } 
-			// else if (queryTweets[index].BODY == null){
-			// 	console.log('body == null');
-			// 	//any tweet that starts with a quote sign will have a null body, so it shouldn't be included. 
-			// 	index++; //both cases increment index 
+			} 
+			else if (queryTweets[index].BODY == null){
+				console.log('body == null');
+				//any tweet that starts with a quote sign will have a null body, so it shouldn't be included. 
+				index++; //both cases increment index 
+				console.log(queryTweets[index].BODY);
 
 			} else {
-				console.log(queryTweets[k].BODY);
+				console.log(queryTweets[index].BODY);
 				//if the tweet body exists and isn't null...
 				var li=document.createElement("li");
-				var tweetBody = queryTweets[k].BODY+" --@"+queryTweets[k].META_ProfileAbout;
+				var tweetBody = queryTweets[index].BODY+" --@"+queryTweets[index].META_ProfileAbout;
 				console.log(tweetBody);
 				li.innerHTML = replaceURLWithHTMLLinks(tweetBody);
 				tweetFeed.appendChild(li);
