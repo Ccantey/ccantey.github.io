@@ -35,9 +35,9 @@ function initialize(){
  function getAllTweets() {
  //grab the results of a query for every tweet in database 
 	d3.json("http://gis.leg.mn/iMaps/cantey_queryAll.php", function(phpData) {
-		console.log("phpData length: ",phpData.length);
+		// console.log("phpData length: ",phpData.length);
 		var allTweets = phpData;
-		console.log("total tweets: ",allTweets.length);
+		// console.log("total tweets: ",allTweets.length);
 		//array to store pairs of [hexgon id, total number of tweets in that hex]
 		hexTweetTotalPairsArray = countQueryTweetsByHex(allTweets); 
 		console.log("hexagons with a tweet: ",hexTweetTotalPairsArray.length);
@@ -183,7 +183,7 @@ function bindData (searchWord){
 			//console.log("k: ",k);
 			if (!queryTweets[index]){
 				if (index == 0){
-					console.log('index == 0');
+					// console.log('index == 0');
 					tweetFeed.innerHTML = "<p>no tweets match <br/>your search</p>";
 				}
 				//if undefined, break out of the loop. 
@@ -194,11 +194,11 @@ function bindData (searchWord){
 				index++; //both cases increment index 
 				// console.log(queryTweets[index].BODY);
 			} else {
-				console.log(queryTweets[index].body);
+				// console.log(queryTweets[index].body);
 				//if the tweet body exists and isn't null...
 				var li=document.createElement("li");
 				var tweetBody = queryTweets[index].body+" --@"+queryTweets[index].meta_profileabout;
-				console.log(tweetBody);
+				// console.log(tweetBody);
 				li.innerHTML = replaceURLWithHTMLLinks(tweetBody);
 				tweetFeed.appendChild(li);
 				index++; //both cases increment index 
