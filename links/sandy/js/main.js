@@ -150,7 +150,7 @@ function bindData (searchWord){
 		searchWord = 'Sandy';
 		document.getElementById("keyword").innerHTML = searchWord;
 	}
-	
+
 	console.log("jsonHexes:",jsonHexes.length);
 	
 	//clear the properties to clear previous data from map
@@ -161,8 +161,8 @@ function bindData (searchWord){
 	$('#loading').show();
 	//grab the query tweets from the php file 
 	d3.json("http://gis.leg.mn/iMaps/cantey.php?x="+searchWord, function(queryData) {
-	    console.log("query items length: ",queryData.length);
-		console.log("query items: ",queryData[0]);
+	    // console.log("query items length: ",queryData.length);
+		// console.log("query items: ",queryData[0]);
 		var queryTweets = queryData; //why does 'evacuate return empty, but display colors on map???? 
 		//console.log("queryTweets: ", queryTweets); 
 		
