@@ -193,16 +193,16 @@ function bindData (searchWord){
 				}
 				//if undefined, break out of the loop. 
 				break;
-			} if (queryTweets[index].BODY == null){
+			} else if (queryTweets[index].body == null){
 				// console.log('body == null');
 				//any tweet that starts with a quote sign will have a null body, so it shouldn't be included. 
 				index++; //both cases increment index 
 				// console.log(queryTweets[index].BODY);
 			} else {
-				console.log(queryTweets[index].BODY);
+				console.log(queryTweets[index].body);
 				//if the tweet body exists and isn't null...
 				var li=document.createElement("li");
-				var tweetBody = queryTweets[index].BODY+" --@"+queryTweets[index].META_ProfileAbout;
+				var tweetBody = queryTweets[index].body+" --@"+queryTweets[index].meta_profileabout;
 				console.log(tweetBody);
 				li.innerHTML = replaceURLWithHTMLLinks(tweetBody);
 				tweetFeed.appendChild(li);
@@ -289,7 +289,7 @@ function countQueryTweetsByHex(queryTweets) {
 	for (var i=0; i<queryTweets.length; i++){
 	//for every tweet that matches the query... 
 		//store its hexagon id as var hexID
-		var hexID = queryTweets[i].Hex;
+		var hexID = queryTweets[i].hex;
 		//find the index of that hexID value within the queryHexagons array. 
 		//Returns -1 if it doesn't exist!! 
 		var existingIndex = queryHexagons.indexOf(hexID);
