@@ -193,9 +193,11 @@ function bindData (searchWord){
 				//if undefined, break out of the loop. 
 				break;
 			} else if (queryTweets[index].BODY == null){
+				console.log(queryTweets[index].BODY);
 				//any tweet that starts with a quote sign will have a null body, so it shouldn't be included. 
 				index++; //both cases increment index 
 			} else {
+				console.log(queryTweets[index].BODY);
 				//if the tweet body exists and isn't null...
 				var li=document.createElement("li");
 				var tweetBody = queryTweets[index].BODY+" --@"+queryTweets[index].META_ProfileAbout;
