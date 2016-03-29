@@ -199,6 +199,7 @@ function bindData (searchWord){
 				//if the tweet body exists and isn't null...
 				var li=document.createElement("li");
 				var tweetBody = queryTweets[index].BODY+" --@"+queryTweets[index].META_ProfileAbout;
+				console.log(tweetBody);
 				li.innerHTML = replaceURLWithHTMLLinks(tweetBody);
 				tweetFeed.appendChild(li);
 				index++; //both cases increment index 
