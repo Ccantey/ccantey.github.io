@@ -165,7 +165,7 @@ function bindData (searchWord){
 	$('#loading').show();
 	//grab the query tweets from the php file 
 	d3.json("http://gis.leg.mn/iMaps/cantey.php?x="+searchWord, function(queryData) {
-	         
+	    console.log("query items length: ",queryData[0].length);
 		console.log("query items: ",queryData[0]);
 		var queryTweets = queryData; //why does 'evacuate return empty, but display colors on map???? 
 		//console.log("queryTweets: ", queryTweets); 
@@ -185,7 +185,7 @@ function bindData (searchWord){
 		//loop using a variable (k) to keep track of how many tweets have actually been added to the feed. 
 		for (var k=0; k<4; ){
 			//console.log("k: ",k);
-			console.log(queryTweets[index].BODY);
+			console.log(queryTweets[5].BODY);
 			if (!queryTweets[index]){
 				if (index == 0){
 					tweetFeed.innerHTML = "<p>no tweets match <br/>your search</p>";
