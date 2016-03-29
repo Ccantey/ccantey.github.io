@@ -165,7 +165,7 @@ function bindData (searchWord){
 	$('#loading').show();
 	//grab the query tweets from the php file 
 	d3.json("http://gis.leg.mn/iMaps/cantey.php?x="+searchWord, function(queryData) {
-	    console.log("query items length: ",queryData[0].length);
+	    console.log("query items length: ",queryData.length);
 		console.log("query items: ",queryData[0]);
 		var queryTweets = queryData; //why does 'evacuate return empty, but display colors on map???? 
 		//console.log("queryTweets: ", queryTweets); 
@@ -192,10 +192,12 @@ function bindData (searchWord){
 				}
 				//if undefined, break out of the loop. 
 				break;
-			} else if (queryTweets[index].BODY == null){
-				console.log('body == null');
-				//any tweet that starts with a quote sign will have a null body, so it shouldn't be included. 
-				index++; //both cases increment index 
+			} 
+			// else if (queryTweets[index].BODY == null){
+			// 	console.log('body == null');
+			// 	//any tweet that starts with a quote sign will have a null body, so it shouldn't be included. 
+			// 	index++; //both cases increment index 
+
 			} else {
 				console.log(queryTweets[index].BODY);
 				//if the tweet body exists and isn't null...
@@ -207,7 +209,7 @@ function bindData (searchWord){
 				index++; //both cases increment index 
 				k++; //only increment k in this case. 
 			}; //end if/else statement 
-		$('#loading').hide();	
+		    $('#loading').hide();	
 		};//end for loop
 		 	
 		
