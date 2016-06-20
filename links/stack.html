@@ -78,10 +78,10 @@ var map = new mapboxgl.Map({
     maxBounds: bounds // Sets bounds as max
 });
 
-addLayer(['reciprocite-gpv', 'reciprocite-gap','reciprocite-gprmv'], 'reciprocite1 toggle');
-addLayer(['reciprocite-non-recipro','reciprocite-eh3vv'], 'reciprocite2 toggle');
+toggleLayer(['reciprocite-gpv', 'reciprocite-gap','reciprocite-gprmv'], 'reciprocite1 toggle');
+toggleLayer(['reciprocite-non-recipro','reciprocite-eh3vv'], 'reciprocite2 toggle');
 
-function addLayer(ids, name) {
+function toggleLayer(ids, name) {
     var link = document.createElement('a');
     link.href = '#';
     link.className = 'active';
