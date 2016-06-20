@@ -89,14 +89,14 @@ var map = new mapboxgl.Map({
 
 // });
 
-addLayer(['reciprocite-gpv', 'reciprocite-gap','reciprocite-gprmv','reciprocite-non-recipro','reciprocite-eh3vv']);
-// addLayer('GPV', 'reciprocite-gpv');
+addLayer(['reciprocite-gpv', 'reciprocite-gap','reciprocite-gprmv'], 'reciprocite1 toggle');
+addLayer(['reciprocite-non-recipro','reciprocite-eh3vv'], 'reciprocite2 toggle');
 
-function addLayer(ids) {
+function addLayer(ids, name) {
     var link = document.createElement('a');
     link.href = '#';
     link.className = 'active';
-    link.textContent = "toggle reciprocite layers";
+    link.textContent = name;
 
     link.onclick = function (e) {
         e.preventDefault();
