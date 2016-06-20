@@ -78,17 +78,6 @@ var map = new mapboxgl.Map({
     maxBounds: bounds // Sets bounds as max
 });
 
-
-// map.on('load', function () {
-
-//     map.setFilter('reciprocite-gap',['==','Nom','GAP']);
-//     map.setFilter('reciprocite-gpv',['==','Nom','GPV']);
-//     map.setFilter('reciprocite-gprmv',['==','Nom','GPRMV']);
-//     map.setFilter('reciprocite-non-recipro',['==','Nom','NON-RECIPRO']);
-//     map.setFilter('reciprocite-eh3vv',['==','Nom','EH3VV']);
-
-// });
-
 addLayer(['reciprocite-gpv', 'reciprocite-gap','reciprocite-gprmv'], 'reciprocite1 toggle');
 addLayer(['reciprocite-non-recipro','reciprocite-eh3vv'], 'reciprocite2 toggle');
 
