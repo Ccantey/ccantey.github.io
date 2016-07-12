@@ -138,7 +138,7 @@ function bindData (searchWord){
 		document.getElementById("legend").style.display = "inherit";
 		document.getElementById("controlPanel").style.opacity = "0.5";
 		document.getElementById("controlPanel").style.right = "10px";
-		document.getElementById("controlPanel").style.top = "5%";
+		document.getElementById("controlPanel").style.top = "55px";
 		document.getElementById("controlPanel").style.margin = "0px";
 		document.getElementById("cover").style.display = "none";
 		document.getElementById("welcome-text").style.display = "none";

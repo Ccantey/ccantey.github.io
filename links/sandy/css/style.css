@@ -4,15 +4,24 @@ body{
 	text-align: center;
 
 	font-family: Akashi, Verdana, sans;
-	width: 900px;
+	width: 100%;
 	margin: 0 auto 0 auto;
 }
-body a{
+.navbar-inverse{
+	background-color: #000;
+	min-height: 55px;
+
+}
+#tweetsContainer a{
 	text-decoration: underline;
 	color: white;
 }
 body a:hover{
 	opacity: 0.5;
+}
+#wrap-body{
+	position: absolute;
+	top:55px;
 }
 h2 {
 	color:#F6CE1D;
@@ -51,8 +60,8 @@ ul{
 	padding-top: 20px;
 	width: 200px;
 	position: fixed; 
-		width: 300px;
-		right:50%;
+	width: 300px;
+	right:50%;
 	
 	z-index: 10;
 }
@@ -66,12 +75,13 @@ ul{
 #mapTitle{
 	width:200px;
 	height: 90px;
-	position:fixed;
-	padding-top: 20px;
+	position:absolute;
+	/*padding-top: 20px;
 	padding-bottom: 20px;
-	left:10px;
+	left:10px;*/
 	top: 5px;
 	background-color: black;
+	z-index: 9;
 }
 #mapTitle p{
 	font-size:0.8em;
@@ -81,14 +91,18 @@ ul{
 }
 
 .title{
-	color: #F6CE1D; /*bright yellow*/
+	color: #F6CE1D !important; /*bright yellow*/
 	font-size: 2.5em;
+	position: absolute;
+	left:15px;
 }
 /*~~~~~~~~~~~ end Map Title ~~~~~~~~~~~*/
 
 /*------------ Map -----------*/
 #mapContainer {
-	left: 0;
+	position: absolute;
+
+	left: 250px;
 	margin: 0;
 	width: 900px;
 }
@@ -126,10 +140,10 @@ ul{
 	opacity: 0.5;
 }
 #tweetsContainer{
-		position: fixed; 
-		width: 220px;
-		left: 10px;
-		top:150px;
+	position: absolute; 
+	width: 220px;
+	left: 10px;
+	top:117px;
 	background-color: black; 
 	border-radius: 10px;
 	opacity: 0.5;
@@ -163,14 +177,14 @@ ul{
 #controlPanel {
 	z-index: 100;
 	position: fixed; 
-		width: 300px;
-		height: 500px;
-		right:50%;
-		margin-right:-300px;
-		top: 20px;
+	width: 300px;
+	height: 500px;
+	right:50%;
+	margin-right:-300px;
+	top: 20px;
 	background-color: black; 
 	border-radius: 10px;
-	/*opacity: 0.5;*/
+	opacity: 0.5;
 	color: white;
 } 
 #controlsButton{
@@ -272,29 +286,35 @@ position:relative;
 }
 		/*________ Borough Labels ________*/
 		#boroughLabels{
+
 			display: inherit;
 		}
 
 		#boroughLabels span{
+
 			position:absolute;
 			font-size:0.9em;
 		}
 		#brooklyn{
-			margin-top: 750px;
-			left: 300px;
+			z-index: 9;
+			top: 688px;
+			left: 530px;
 		}
 		#bronx {
-			margin-top:60px;
-			right:325px;
+			z-index: 9;
+			top:118px;
+			right:144px;
 		}
 		#manhattan{
+			z-index: 9;
 			margin-top:350px;
-			left:200px;
+			left:453px;
 		}
 
 		#queens{
-			margin-top: 430px;
-			right:260px;
+			z-index: 9;
+			top: 430px;
+			right:147px;
 		}
 /*~~~~~~~~~~~~~~ end Boroughs ~~~~~~~~~~~~~~ */
 
@@ -309,6 +329,7 @@ position:relative;
 	width:240px;
 	background-color:black;
 	border-radius: 10px;
+	z-index: 9;
 }
 #legend h2{
 	position:block;
@@ -365,7 +386,11 @@ position:relative;
 /*------------------- About Paragraph -------------------*/
 
 #aboutContainer {
-	/*display:none;*/
+	position:absolute;
+	left:250px;
+	font-size: .7em;
+	text-align: left;
+	top:1155px;
 	width:900px;
 	clear: both;
 	opacity:0.7;
