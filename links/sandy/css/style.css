@@ -12,6 +12,11 @@ body{
 	min-height: 55px;
 
 }
+.navbar-nav{
+	/*position:absolute;*/
+	margin-left: 150px;
+	font-family: Electrolize;
+}
 #tweetsContainer a{
 	text-decoration: underline;
 	color: white;
