@@ -49,7 +49,10 @@ ul{
 	padding:0;
 }
 
-
+.navbar  a:hover{
+   color: #f6ce1d !important;
+   opacity:1;
+}
 #wrapper{
 	width: 900px;
 	position:relative;
