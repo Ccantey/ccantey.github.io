@@ -25,7 +25,12 @@ body{
 	text-decoration: underline;
 	color: white;
 }
-body a:hover{
+
+#tweetsContainer a:hover{
+	text-decoration: underline;
+	color: #f6ce1d;
+}
+#controlsContent a:hover{
 	opacity: 0.5;
 }
 #wrap-body{
@@ -88,11 +93,11 @@ ul{
 #mapTitle{
 	width:200px;
 	height: 90px;
-	position:absolute;
+	position:fixed;
 	/*padding-top: 20px;
 	padding-bottom: 20px;
 	left:10px;*/
-	top: 5px;
+	top: 59px;
 	background-color: black;
 	z-index: 9;
 }
@@ -156,10 +161,10 @@ ul{
 	opacity: 0.5;
 }
 #tweetsContainer{
-	position: absolute; 
+	position: fixed; 
 	width: 220px;
 	left: 10px;
-	top:117px;
+	top:152px;
 	background-color: black; 
 	border-radius: 10px;
 	opacity: 0.5;
