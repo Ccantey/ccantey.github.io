@@ -7,6 +7,10 @@ body{
 	width: 100%;
 	margin: 0 auto 0 auto;
 }
+
+.container{
+	margin-left:75px;
+}
 .navbar-inverse{
 	background-color: #000;
 	min-height: 55px;
@@ -44,7 +48,8 @@ ul{
 	margin:0;
 	padding:0;
 }
- 
+
+
 #wrapper{
 	width: 900px;
 	position:relative;
@@ -120,6 +125,9 @@ ul{
 /*-------------------Twitter "Feed"(Sample Tweets)-----------------------*/
 #keyword{
 	margin-left: 30px;
+	font-size:1.5em;
+	font-weight:bold;
+	margin-top:10px;
 }
 
 #bird{
@@ -391,7 +399,7 @@ position:relative;
 /*------------------- About Paragraph -------------------*/
 
 #aboutContainer {
-	position:absolute;
+	position:relative;
 	left:250px;
 	font-size: .7em;
 	text-align: left;
@@ -411,8 +419,13 @@ position:relative;
 /*------------------- end About Paragraph -------------------*/
 
 footer {
+	position:relative;
 	width:900px;
-	bottom:0;
 	clear: both;
 	opacity: 0.7;
+	text-align: center;
+	font-weight: bold;
+	margin-left:200px;
+	margin-top:1175px;
+
 } 
