@@ -344,7 +344,7 @@ position:relative;
 	display: none;
 	position:fixed;
 		/*right: 320px;*/
-		right: 10px;
+		left: 1135px;
 		bottom: 10px;
 	height:100px;
 	width:240px;
