@@ -142,6 +142,7 @@ function bindData (searchWord){
 		document.getElementById("controlPanel").style.margin = "0px";
 		document.getElementById("cover").style.display = "none";
 		document.getElementById("welcome-text").style.display = "none";
+		document.getElementById("tweetsContainer").style.display = "block";
 		mapEntered = true;
 	}
 	

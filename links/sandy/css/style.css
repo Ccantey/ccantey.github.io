@@ -165,15 +165,17 @@ ul{
 	opacity: 0.5;
 }
 #tweetsContainer{
-	position: absolute; 
+	position: fixed; 
 	width: 220px;
-	left: 10px;
-	top:94px;
+	display: none;
+	/*left: 112px;*/
+	top:150px;
 	background-color: black; 
 	border-radius: 10px;
 	opacity: 0.5;
 	text-align: left;
 	color: white;
+	z-index: 2001;
 }
 	#tweets ul{
 	list-style-type: none;
