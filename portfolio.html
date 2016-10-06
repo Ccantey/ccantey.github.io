@@ -94,7 +94,8 @@ $(document).ready(function() {
 				  <div id="leftNav" class="span3 bs-docs-sidebar" role="navigation" style="line-height:.85em" >
 					<ul  class="nav nav-list affix"  >
 					  <li  style="padding-left: 15px;"><strong>Interactive Maps</strong></li>
-					  <li style="margin-top: 15px;"><a href="#top"><i class="icon-chevron-right"></i> Legacy Ammendment</a></li>
+					  <li style="margin-top: 15px;"><a href="#top"><i class="icon-chevron-right"></i> Election Mapbox GL</a></li>
+					  <li ><a href="#legacy"><i class="icon-chevron-right"></i> Legacy Ammendment</a></li>
 					  <li><a href="#districtfinder"><i class="icon-chevron-right"></i> Who Represents Me?</a></li>
 					  <li><a href="#webgl"><i class="icon-chevron-right"></i> Mapbox GL</a></li>
 					  <li><a href="#cityviewer"><i class="icon-chevron-right"></i> CityViewer</a></li>
@@ -122,6 +123,22 @@ $(document).ready(function() {
         </div><!--module-->
 				
 <!-- 1 -->
+   <div id="legacy" class="row">
+			<div class="col-md-3"></div>
+				<div class="col-md-8">
+				<div id="callout-alerts-no-default" class="bs-callout bs-callout-primary">
+			            	<h4>Legislature Election Map</h4>
+			            	<!-- <p style="color:#b8860b"><i class="glyphicon glyphicon-certificate"></i> Winner of the 2015 CAGIS Best Interactive Mapping Application.</p> -->
+			            	<p>Final 2012 results. Prototype for 2016 election map - built with Mapbox GL, using custom built <a href="https://github.com/Ccantey/LCC-Minimal-UI-NYT" target="_blank">LCC-Minimal-UI-NYT template</a>.</p>
+			            	 <a href="http://www.gis.leg.mn/iMaps/elections/2012/" target="blank">
+			            	    <img id="crime" src="assets/thumbnails/interactive/election2012.jpg" class="img-responsive" alt="Responsive image">
+			            	</a>
+			            	 <p style="margin-top:10px;font-style:italic"><i class="glyphicon glyphicon-star"></i> Fully responsive application. Test across any browser or device size.</p>
+
+				</div>
+			 </div>
+			  <div class="col-md-1"></div>
+		</div>
 		<div id="districtfinder" class="row">
 			<div class="col-md-3"></div>
 				<div class="col-md-8">
@@ -315,7 +332,7 @@ $(document).ready(function() {
 							 
 				</div>
 			 </div>
-			  <div class="col-md-1"></div>
+			  <div id="bv" class="col-md-1"></div>
 		</div>
 		<!-- 7 -->
 		 <div id="flu" class="row">
