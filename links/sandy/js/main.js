@@ -136,7 +136,7 @@ function bindData (searchWord){
 	if (mapEntered == false) { 	
 		//do this if it's the first time entering the map this session.
 		document.getElementById("legend").style.display = "inherit";
-		document.getElementById("controlPanel").style.opacity = "0.75";
+		// document.getElementById("controlPanel").style.opacity = "0.75";
 		document.getElementById("controlPanel").style.left = "calc(5% + 1135px)";
 		document.getElementById("controlPanel").style.top = "55px";
 		document.getElementById("controlPanel").style.margin = "0px";
