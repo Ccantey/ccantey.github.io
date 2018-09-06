@@ -42,7 +42,6 @@ body{
 	margin-left:5%;
 }
 h2 {
-	font-family: Electrolize;
 	color:#F6CE1D;
 	font-size: 1.2em;
 	margin:0;
@@ -218,7 +217,7 @@ ul{
 
 } 
 .text-akashi{
-	font-family: electrolize;
+	font-family: akashi;
 }
 #controlsButton{
 	padding-bottom: 10px;
