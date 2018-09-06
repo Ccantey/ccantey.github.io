@@ -202,6 +202,7 @@ ul{
 
 /*++++++++++++++++++++ Control Panel (Map It!) ++++++++++++++++ */
 #controlPanel {
+	font-family: electrolize;
 	z-index: 10;
 	position: fixed; 
 	width: 300px;
@@ -211,8 +212,9 @@ ul{
 	top: 20px;
 	background-color: black; 
 	border-radius: 10px;
-	opacity: 0.5;
-	color: white;
+	opacity: 0.75;
+	color: #fff;
+
 } 
 #controlsButton{
 	padding-bottom: 10px;
