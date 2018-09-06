@@ -3,7 +3,7 @@ body{
 	color: white;
 	text-align: center;
 
-	font-family: Akashi, Verdana, sans;
+	font-family: Verdana, sans;
 	width: 100%;
 	margin: 0 auto 0 auto;
 }
@@ -172,7 +172,7 @@ ul{
 	top:150px;
 	background-color: black; 
 	border-radius: 10px;
-	opacity: 0.5;
+	opacity: 0.75;
 	text-align: left;
 	color: white;
 	z-index: 2001;
@@ -202,7 +202,7 @@ ul{
 
 /*++++++++++++++++++++ Control Panel (Map It!) ++++++++++++++++ */
 #controlPanel {
-	z-index: 100;
+	z-index: 10;
 	position: fixed; 
 	width: 300px;
 	height: 500px;
