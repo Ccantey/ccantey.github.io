@@ -217,6 +217,9 @@ ul{
 	color: #000;
 
 } 
+.text-akashi{
+	font-family: electrolize;
+}
 #controlsButton{
 	padding-bottom: 10px;
 }
