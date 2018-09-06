@@ -217,7 +217,7 @@ ul{
 
 } 
 .text-akashi{
-	font-family: akashi;
+	font-family: Akashi !important;
 }
 #controlsButton{
 	padding-bottom: 10px;
